@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<title>AUTO MU SS12 v1.0.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="/static/jquery-1.12.4.min.js"></script>
+    <script src="/static/myscript.js"></script>
+    <link href="/static/toast/toastr.css" rel="stylesheet" />
+    <script src="/static/toast/toastr.min.js"></script>
+
+    <script type="text/javascript" src="/eel.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="w3-container">
+        <h2>AUTO MU SS12</h2>
+
+        <div class="w3-row">
+            <a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Quản lý
+                    account</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openTab(event, 'danhsachscript');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Danh sách
+                    kịch bản</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openTab(event, 'script');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Thêm kịch
+                    bản</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openTab(event, 'log');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Nhật ký
+                    hoạt động</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openTab(event, 'caidatkhac');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Cài đặt
+                    khác</div>
+            </a>
+        </div>
+
+
+
+        <div id="quanlyaccount" class="w3-container tabs" style="display:none">
+            <table class="w3-table w3-bordered" id="customers">
+            </table>
+        </div>
+        <div id="danhsachscript" class="w3-container tabs" style="display:none">
+            <table class="w3-table w3-bordered" id="tabledanhsachscript">
+            </table>
+        </div>
+
+        <div id="script" class="w3-container tabs" style="display:none">
+            <br><input class="w3-input w3-animate-input" type="text" id="nameScript" placeholder="Nhập tên script">
+            <br>
+            <select class="w3-select" id="mapSelect">
+            </select>
+            <br>
+            <br>
+            <div class="w3-half">
+                <label>Tọa độ x</label>
+                <input class="w3-input w3-border" id="toaDoX" type="number" placeholder="X">
+            </div>
+            <div class="w3-half">
+                <label>Tọa độ y</label>
+                <input class="w3-input w3-border" id="toaDoY" type="number" placeholder="Y">
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="w3-half">
+                <label>Level nhỏ nhất</label>
+                <input class="w3-input w3-border" id="levelmin" type="number" placeholder="1">
+            </div>
+            <div class="w3-half">
+                <label>Level lớn nhất</label>
+                <input class="w3-input w3-border" id="levelmax" type="number" placeholder="400">
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div>
+                <label>Thời gian quay lại map khi bị PK (phút)</label>
+                <input class="w3-input w3-border" id="timequaylaikhibipk" type="number" value="30">
+            </div>
+
+
+            <input class="w3-check" id="checkNhatZen" type="checkbox" checked="checked">
+            <label>Nhặt zen</label>
+            <br>
+            <br>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    <button onclick="saveScript()" class="w3-button w3-block w3-teal">Lưu lại</button>
+                </div>
+            </div>
+            <div id="saveScriptStatus"></div>
+        </div>
+        <div id="log" class="w3-container tabs" style="display:none">
+            <br><textarea id="nhatkyhoatdong" rows="20" style="width: 100%; resize: none"></textarea>
+        </div>
+        <div id="caidatkhac" class="w3-container tabs" style="display:none">
+            <br><br><input class="w3-check" id="showMain" type="checkbox" checked="checked">
+            <label>Hiện main MU</label>
+
+            <br><br><input class="w3-input w3-animate-input" type="text" id="tokenTelegram"
+                placeholder="Token telegram">
+            <br><input class="w3-input w3-animate-input" type="text" id="apiAnycaptcha"
+                placeholder="API Key anycaptcha.com">
+
+            <br>
+            <div class="w3-threequarter"><input class="w3-input w3-animate-input" type="text" id="apikeyActive"
+                    placeholder="Key kích hoạt tài khoản"></div>
+            <button onclick="kichHoatTaiKhoan()" class="w3-button w3-green w3-right">Kích hoạt tài khoản</button>
+            <br>
+            <br>
+            <br>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    <button onclick="saveSetting()" class="w3-button w3-block w3-teal">Lưu lại</button>
+                </div>
+            </div>
+            <div id="saveSettingStatus"></div>
+        </div>
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top w3-card-4">
+                <header class="w3-container w3-teal">
+                    <span onclick="document.getElementById('id01').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
+                    <h2 id="kichbannv">Chọn kịch bản</h2>
+                </header>
+                <div class="w3-container w3-card-4">
+                    <div id="listkichbannv">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var mapOptions = "<option>Elbeland3</option><option>Devias2</option><option>Dungeon2</option><option>LostTower3</option><option>LostTower5</option><option>LostTower7</option><option>Tarkan2</option><option>Icarus</option><option>Kanturu_ruin2</option><option>Kanturu_ruin_island</option><option>Kanturu_Remain</option><option>Karutan1</option><option>Karutan2</option><option>Barrack</option><option>Kalima</option>";
+        var defaultMapOptions = "<option disabled selected>Chọn map</option>" + mapOptions
+        setHtmlCssSelector("#mapSelect", defaultMapOptions);
+        eel.expose(pythonToJS);               // Expose this function to Python
+        function pythonToJS(x) {
+            const txtArea = document.getElementById("nhatkyhoatdong");
+            txtArea.value = x + "\r\n" + txtArea.value;
+        }
+        function kichHoatTaiKhoan() {
+            var apikeyActive = getValue("#apikeyActive")
+            eel.kichHoatTaiKhoan(apikeyActive)(function (callback) {
+                var mess = callback.mess
+                if (mess != "success") {
+                    setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
+                    <h3>Kích hoạt tài khoản thất bại</h3>
+                    <p>${mess}</p>
+                </div>`  )
+                    return
+                }
+                var result = callback.result
+                setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Kích hoạt tài khoản thành công</h3>
+                    <p>${result}</p>
+                </div>`)
+                // console.log(result)
+            }
+            )
+        }
+        function getSetting() {
+            eel.getSetting()(function (callback) {
+                var result = callback.result
+                var apiAnycaptcha = result.apiAnycaptcha
+                var showMain = result.showMain
+                if (showMain == 0) {
+                    showMain = false
+                }
+                // console.log(showMain)
+                var tokenTelegram = result.tokenTelegram
+                var apikeyActive = result.apikeyActive
+                setValueCssSelector("#apiAnycaptcha", apiAnycaptcha)
+                setCheckboxCssSelector("#showMain", showMain)
+                setValueCssSelector("#tokenTelegram", tokenTelegram)
+                setValueCssSelector("#apikeyActive", apikeyActive)
+                // console.log(info)
+            }
+            )
+        }
+        getSetting()
+        function saveSetting() {
+            apiAnycaptcha = getValue('#apiAnycaptcha')
+            apikeyActive = getValue('#apikeyActive')
+            showMain = getCheckboxChecked('#showMain')
+            tokenTelegram = getValue('#tokenTelegram')
+            eel.saveSetting(apiAnycaptcha, apikeyActive, showMain, tokenTelegram)(function (callback) {
+                var mess = callback.mess
+                if (mess == "success") {
+                    setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Lưu lại thành công</h3>
+                </div>`)
+                } else {
+                    setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
+                    <h3>Lưu lại thất bại</h3>
+                </div>`)
+                }
+                console.log(callback)
+            }
+            )
+        }
+        function callback_saveScript(callback) {
+            var mess = callback.mess
+            if (mess == "success") {
+                setHtmlCssSelector("#saveScriptStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Lưu lại thành công</h3>
+                </div>`)
+            } else {
+                setHtmlCssSelector("#saveScriptStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
+                    <h3>Lưu lại thất bại</h3>
+                </div>`)
+            }
+            console.log(callback)
+        }
+
+        function saveScript() {
+            namescript = getValue('#nameScript')
+            mapselect = getTextSelect('#mapSelect')
+            x = getValue('#toaDoX')
+            y = getValue('#toaDoY')
+            levelmin = getValue('#levelmin')
+            levelmax = getValue('#levelmax')
+            timequaylaikhibipk = getValue('#timequaylaikhibipk')
+            nhatzen = getCheckboxChecked('#checkNhatZen')
+            eel.saveScript(namescript, mapselect, x, y, levelmin, levelmax, timequaylaikhibipk, nhatzen)(callback_saveScript)
+        }
+        function openTab(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tabs");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-border-red";
+        }
+
+        function callback_getScript(callback) {
+            var info = callback.result
+
+            var render = "<tr><th>Tên Script</th><th>Map</th><th>X</th><th>Y</th><th>Level min</th><th>Level max</th><th>Time quay lại</th><th>Nhặt zen</th><th>Action</th></tr>"
+            for (const x in info) {
+                var infoht = info[x]
+                var zen = infoht.zen
+                var checkedzen = false
+                if (zen == "1") {
+                    checkedzen = true
+                }
+                render = render + `<tr id="${infoht.id}"><td><input class="w3-input w3-border-0" type="text" id="ten${infoht.id}" value="${infoht.ten}"></input></td><td><select class="w3-select" id="map${infoht.id}"><option value="${infoht.map}" selected>${infoht.map}</option>${mapOptions}</select></td><td><input class="w3-input w3-border-0" type="number" id="x${infoht.id}" value="${infoht.x}"></input></td><td><input class="w3-input w3-border-0" type="number" id="y${infoht.id}" value="${infoht.y}"></input></td><td><input class="w3-input w3-border-0" type="number" id="levelmin${infoht.id}" value="${infoht.levelmin}"></input></td><td><input class="w3-input w3-border-0" type="number" id="levelmax${infoht.id}" value="${infoht.levelmax}"></input></td><td><input class="w3-input w3-border-0" type="number" id="timequaylaikhibipk${infoht.id}" value="${infoht.timequaylaikhibipk}"></input></td><td><input type="checkbox" id="zen${infoht.id}" ${checkedzen ? "checked" : ""}></td><td><a href="#" onclick="updateScript(${infoht.id})">Cập nhật</a> | <a href="#" onclick="deleteScript(${infoht.id})">Xóa</a> </td></tr>`
+            }
+            setHtmlCssSelector('#tabledanhsachscript', render)
+        }
+        function getScript() {
+            eel.getScript()(callback_getScript)
+        }
+        getScript()
+        function callback_updateScript(callback) {
+            var mess = callback.mess
+            if (mess == "success") {
+                alert("Update thành công")
+            } else {
+                alert("Update thất bại")
+            }
+            console.log(callback)
+        }
+        function updateScript(id) {
+            ten = getValue(`#ten${id}`)
+            map = getTextSelect(`#map${id}`)
+            x = getValue(`#x${id}`)
+            y = getValue(`#y${id}`)
+            levelmin = getValue(`#levelmin${id}`)
+            levelmax = getValue(`#levelmax${id}`)
+            timequaylaikhibipk = getValue(`#timequaylaikhibipk${id}`)
+            zen = getCheckboxChecked(`#zen${id}`)
+            eel.updateScript(id, ten, map, x, y, levelmin, levelmax, timequaylaikhibipk, zen)(callback_updateScript)
+        }
+        function callback_deleteScript(callback) {
+            var mess = callback.mess
+            if (mess == "success") {
+                alert("Xóa thành công")
+                document.getElementById(callback.id).remove();
+            } else {
+                alert("Xóa thất bại")
+            }
+            console.log(callback)
+        }
+        function deleteScript(id) {
+            eel.deleteScript(id)(callback_deleteScript)
+        }
+        function editKichBanHero(hero, idkichban, tenkichban) {
+            enable = getCheckboxChecked('#kichban_' + hero + "_" + idkichban)
+            eel.editKichBanHero(hero, tenkichban, enable)(function (callback) {
+                var mess = callback.mess
+                console.log(mess);
+            }
+            )
+        }
+        function showKichBan(hero) {
+            document.getElementById('id01').style.display = 'block'
+            setHtmlCssSelector("#kichbannv", "Chọn kịch bản - " + hero)
+            eel.showKichBan(hero)(function (callback) {
+                var result = callback.result
+                var listcheck = ""
+                for (i = 0; i < result.length; i++) {
+                    var resultht = result[i]
+                    var kichhoat = resultht.enable
+                    var checkedkichhoat = false
+                    if (kichhoat == "1") {
+                        checkedkichhoat = true
+                    }
+                    console.log(kichhoat)
+                    listcheck = listcheck + `<p><input class="w3-check" type="checkbox" ${checkedkichhoat ? "checked" : ""} id="kichban_${hero}_${resultht.id}" onclick="editKichBanHero('${hero}','${resultht.id}', '${resultht.ten}')"><label>${resultht.ten}</label></p>`
+                }
+                setHtmlCssSelector("#listkichbannv", listcheck)
+                console.log(result);
+            }
+            )
+        }
+        function saveCongDiem(hero) {
+            var str = getValue("#str")
+            var agi = getValue("#agi")
+            var vit = getValue("#vit")
+            var ene = getValue("#ene")
+            var cmd = getValue("#cmd")
+            var pass2 = getValue("#pass2")
+            var sophutrs = getValue("#sophutrs")
+            eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs)(function (callback) {
+                console.log(callback)
+                var mess = callback.mess
+                if (mess != "success") {
+                    setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
+                    <h3>Lưu điểm thất bại</h3>
+                    <p>${mess}</p>
+                </div>`  )
+                    return
+                }
+                var result = callback.result
+                setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Lưu điểm thành công</h3>
+                    <p>${result}</p>                    
+                </div>`)
+            }
+            )
+        }
+        function showCongDiem(hero) {
+            document.getElementById('id01').style.display = 'block'
+            setHtmlCssSelector("#kichbannv", "Cộng điểm - " + hero)
+            eel.getCongDiem(hero)(function (callback) {
+                var result = callback.result
+                var str = result.addstr
+                var agi = result.addagi
+                var vit = result.addvit
+                var ene = result.addene
+                var cmd = result.addcmd
+                var pass2 = result.pass2
+                var sophutrs = result.sophutrs
+                var listcheck = ""
+                var html = `
+                <br>
+                <label>Sức mạnh</label>
+                <input class="w3-input w3-border" id="str" type="number" value="${str ? str : '0'}" placeholder="0">
+            
+                <br>
+                <label>Nhanh nhẹn</label>
+                <input class="w3-input w3-border" id="agi" type="number" value="${agi ? agi : '0'}" placeholder="0">
+                <br>
+                <label>Thể lực</label>
+                <input class="w3-input w3-border" id="vit" type="number" value="${vit ? vit : '0'}"  placeholder="0">
+                <br>
+                <label>Năng lượng</label>
+                <input class="w3-input w3-border" id="ene" type="number" value="${ene ? ene : '0'}"  placeholder="0">
+                <br>
+                
+                <label>Lãnh đạo</label>
+                <input class="w3-input w3-border" id="cmd" type="number" value="${cmd ? cmd : '0'}"  placeholder="0">
+                <br>
+                
+                <div class="w3-half">          
+                <label>Mật khẩu web</label>
+                <input class="w3-input w3-border" id="pass2" type="text" value="${pass2 ? pass2 : '0'}"  placeholder="0">
+                </div>              
+                <div class="w3-half">
+                <label>Số phút reset / lần</label>
+                <input class="w3-input w3-border" id="sophutrs" type="number" value="${sophutrs ? sophutrs : '0'}"  placeholder="0">
+                </div>
+               
+            
+    
+            <br>
+            <br>
+            <br>
+            <br><div class="w3-center">
+                <div class="w3-bar">
+                    <button onclick="saveCongDiem('${hero}')" class="w3-button w3-block w3-teal">Lưu lại</button>
+                </div>
+            </div>
+            <div id="saveCongdiemStatus"></div><br><br>`
+                setHtmlCssSelector("#listkichbannv", html)
+                console.log(result);
+            }
+            )
+        }
+        function callback_getInfo(callback) {
+            var info = callback.result
+            var render = "<tr><th>Account</th><th>Name</th><th>Map</th><th>Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>"
+
+
+            for (const x in info) {
+                var infoht = info[x]
+                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showKichBan('${infoht.namehero}')" class="w3-button w3-teal">Kịch bản</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
+            }
+            setHtmlCssSelector('#customers', render)
+        }
+        setInterval(function () {
+            eel.getInfo()(callback_getInfo);
+        }, 5000);
+
+        function autoCayZen(namehero) {
+            var checkBox = document.getElementById("cayzen_" + namehero).checked;
+            var value = "0"
+            if (checkBox) {
+                value = "1"
+            }
+            httpGetJson("/autocayzen?tennv=" + namehero + "&cayzen=" + value)
+        }
+        function autoCayReset(namehero) {
+            var checkBox = document.getElementById("cayreset_" + namehero).checked;
+            var value = "0"
+            if (checkBox) {
+                value = "1"
+            }
+            eel.setCayRS(namehero, value)(function (callback) {
+                console.log(callback)
+            }
+            )
+        }
+        function autoPK(namehero) {
+            var checkBox = document.getElementById("autopk_" + namehero).checked;
+            var value = "0"
+            if (checkBox) {
+                value = "1"
+            }
+            eel.setAutoPK(namehero, value)(function (callback) {
+                console.log(callback)
+            }
+            )
+        }
+        function stopHero(namehero) {
+            var checkBox = document.getElementById("stop_" + namehero).checked;
+            var value = "0"
+            if (checkBox) {
+                value = "1"
+            }
+            eel.stopHero(namehero, value)
+        }
+        function Reset(taikhoandangnhap, namehero) {
+            httpGetJson("/reset?tk=" + taikhoandangnhap + "&mk=pass&tennv=" + namehero)
+            var myInterval = setInterval(function () {
+                var logreset = httpGetJson("/logreset?tk=" + taikhoandangnhap)
+                var status = logreset.status
+                toastr.warning(taikhoandangnhap + " => " + logreset.status);
+                if (status == "Tài khoản đang chơi không thể reset" || status == "Reset Success" || status == "Cần level") {
+                    clearInterval(myInterval);
+                }
+
+            }, 10000);
+        }
+
+    </script>
+
+</body>
+
+</html>

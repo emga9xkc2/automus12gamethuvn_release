@@ -1,0 +1,12 @@
+pymem
+pyautogui
+eel
+requests
+wmi
+pyautoit
+psutil
+pytesseract
+Pillow
+timestring
+pynput
+aes-everywhere
