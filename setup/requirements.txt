@@ -10,3 +10,5 @@ Pillow
 timestring
 pynput
 aes-everywhere
+ahk
+ahk[binary]
