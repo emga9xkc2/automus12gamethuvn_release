@@ -443,6 +443,7 @@
             httpGetJson("/autocayzen?tennv=" + namehero + "&cayzen=" + value)
         }
         function autoCayReset(namehero) {
+            namehero = namehero.split("(")[0].trim();
             var checkBox = document.getElementById("cayreset_" + namehero).checked;
             var value = "0"
             if (checkBox) {
@@ -454,6 +455,7 @@
             )
         }
         function autoPK(namehero) {
+            namehero = namehero.split("(")[0].trim();
             var checkBox = document.getElementById("autopk_" + namehero).checked;
             var value = "0"
             if (checkBox) {
@@ -465,6 +467,7 @@
             )
         }
         function stopHero(namehero) {
+            namehero = namehero.split("(")[0].trim();
             var checkBox = document.getElementById("stop_" + namehero).checked;
             var value = "0"
             if (checkBox) {
