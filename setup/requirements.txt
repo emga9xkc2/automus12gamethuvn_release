@@ -12,3 +12,4 @@ pynput
 aes-everywhere
 ahk
 ahk[binary]
+python-telegram-bot

@@ -9,3 +9,7 @@
 <b>5. Thông tin phiên bản</b>
 
 - v1.0
+
+  - Lệnh telegram:
+  - Để ra lại bãi, chat: rabai TenNV
+  - Để ra lại bãi ở 1 tọa độ mới, chat: rabai TenNV,TenMap,X,Y
