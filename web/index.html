@@ -23,24 +23,28 @@
 
         <div class="w3-row">
             <a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Quản lý
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Quản lý
                     account</div>
             </a>
-            <a href="javascript:void(0)" onclick="openTab(event, 'danhsachscript');">
+            <!-- <a href="javascript:void(0)" onclick="openTab(event, 'danhsachscript');">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Danh sách
                     kịch bản</div>
             </a>
             <a href="javascript:void(0)" onclick="openTab(event, 'script');">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Thêm kịch
                     bản</div>
-            </a>
+            </a> -->
             <a href="javascript:void(0)" onclick="openTab(event, 'log');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Nhật ký
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Nhật ký
                     hoạt động</div>
             </a>
             <a href="javascript:void(0)" onclick="openTab(event, 'caidatkhac');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Cài đặt
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Cài đặt
                     khác</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openTab(event, 'hdsd');">
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Hướng dẫn
+                    sử dụng</div>
             </a>
         </div>
 
@@ -50,7 +54,7 @@
             <table class="w3-table w3-bordered" id="customers">
             </table>
         </div>
-        <div id="danhsachscript" class="w3-container tabs" style="display:none">
+        <!-- <div id="danhsachscript" class="w3-container tabs" style="display:none">
             <table class="w3-table w3-bordered" id="tabledanhsachscript">
             </table>
         </div>
@@ -102,7 +106,7 @@
                 </div>
             </div>
             <div id="saveScriptStatus"></div>
-        </div>
+        </div> -->
         <div id="log" class="w3-container tabs" style="display:none">
             <br><textarea id="nhatkyhoatdong" rows="20" style="width: 100%; resize: none"></textarea>
         </div>
@@ -128,6 +132,15 @@
                 </div>
             </div>
             <div id="saveSettingStatus"></div>
+        </div>
+        <div id="hdsd" class="w3-container tabs" style="display:none">
+            <p>- Ấn F2 để lưu tọa độ bãi cần train</p>
+            <p>- Ấn F3 để tạm dừng auto</p>
+            <p>- Ấn F4 để tiếp tục chạy auto</p>
+            <p>- Ấn F7 để chạy auto ngay khi bị pk</p>
+
+
+
         </div>
         <div id="id01" class="w3-modal">
             <div class="w3-modal-content w3-animate-top w3-card-4">
