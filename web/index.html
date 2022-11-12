@@ -354,14 +354,17 @@
             document.getElementById('id01').style.display = 'block'
             setHtmlCssSelector("#kichbannv", "Danh sách PK - " + hero)
             eel.showListPK(hero)(function (callback) {
+                var result = callback.result
                 var html = `<br><textarea id="listpk" rows="20" style="width: 100%; resize: none"></textarea>
                 <br><br>
                 <div class="w3-center">
                 <div class="w3-bar">
                     <button onclick="saveListPK('${hero}')" class="w3-button w3-block w3-teal">Lưu lại</button>
                 </div>
-            </div><br><br>`
+            </div><div id="saveCongdiemStatus"></div><br><br>`
                 setHtmlCssSelector("#listkichbannv", html)
+                const txtArea = document.getElementById("listpk");
+                txtArea.value = result;
 
             }
             )
