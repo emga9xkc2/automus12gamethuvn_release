@@ -141,6 +141,7 @@
             <p>- Liên hệ telegram: <a href="https://t.me/thoconlonton" target="_blank"
                     style="color:hsl(246, 100%, 50%)">https://t.me/thoconlonton</a></p>
             <p><a style="color:hsl(12, 100%, 50%)" href="#" onclick="autoUpdate()"><b>- Cập nhật phiên bản mới</b></a>
+            <div id="hdsdStatus"></div>
             </p>
 
 
@@ -234,6 +235,16 @@
         }
         function autoUpdate() {
             eel.autoUpdate()(function (callback) {
+                var mess = callback.mess
+                if (mess == "success") {
+                    setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Đã cập nhật xong. Hãy tắt tool đi mở lại để dùng phiên bản mới</h3>
+                </div>`)
+                } else {
+                    setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
+                    <h3>Cập nhật thất bại</h3>
+                </div>`)
+                }
                 console.log(callback)
             }
             )
