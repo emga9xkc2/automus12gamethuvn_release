@@ -138,6 +138,8 @@
             <p>- Ấn F3 để tạm dừng auto</p>
             <p>- Ấn F4 để tiếp tục chạy auto</p>
             <p>- Ấn F7 để chạy auto ngay khi bị pk</p>
+            <p>- Liên hệ telegram: <a href="https://t.me/thoconlonton" target="_blank"
+                    style="color:hsl(246, 100%, 50%)">https://t.me/thoconlonton</a></p>
 
 
 
@@ -348,6 +350,22 @@
             }
             )
         }
+        function showListPK(hero) {
+            document.getElementById('id01').style.display = 'block'
+            setHtmlCssSelector("#kichbannv", "Danh sách PK - " + hero)
+            eel.showListPK(hero)(function (callback) {
+                var html = `<br><textarea id="listpk" rows="20" style="width: 100%; resize: none"></textarea>
+                <br><br>
+                <div class="w3-center">
+                <div class="w3-bar">
+                    <button onclick="saveListPK('${hero}')" class="w3-button w3-block w3-teal">Lưu lại</button>
+                </div>
+            </div><br><br>`
+                setHtmlCssSelector("#listkichbannv", html)
+
+            }
+            )
+        }
         function saveCongDiem(hero) {
             var str = getValue("#str")
             var agi = getValue("#agi")
@@ -369,6 +387,28 @@
                 var result = callback.result
                 setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
                     <h3>Lưu điểm thành công</h3>
+                    <p>${result}</p>                    
+                </div>`)
+            }
+            )
+        }
+        function saveListPK(hero) {
+            const txtArea = document.getElementById("listpk");
+            var value = txtArea.value;
+
+            eel.saveListPK(hero, value)(function (callback) {
+                console.log(callback)
+                var mess = callback.mess
+                if (mess != "success") {
+                    setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
+                    <h3>Lưu thất bại</h3>
+                    <p>${mess}</p>
+                </div>`  )
+                    return
+                }
+                var result = callback.result
+                setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Lưu thành công</h3>
                     <p>${result}</p>                    
                 </div>`)
             }
@@ -439,7 +479,7 @@
 
             for (const x in info) {
                 var infoht = info[x]
-                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showKichBan('${infoht.namehero}')" class="w3-button w3-teal">Kịch bản</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
+                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
             }
             setHtmlCssSelector('#customers', render)
         }
