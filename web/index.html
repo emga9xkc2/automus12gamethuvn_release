@@ -241,6 +241,9 @@
             )
         }
         function autoUpdate() {
+            setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
+                    <h3>Xin chờ...</h3>
+                </div>`)
             eel.autoUpdate()(function (callback) {
                 var mess = callback.mess
                 if (mess == "success") {
