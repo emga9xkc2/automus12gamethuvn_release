@@ -506,19 +506,22 @@
         }
         function callback_getInfo(callback) {
             var info = callback.result
-            var render = "<tr><th>Account</th><th>Name</th><th>Map</th><th>Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>"
+            var render = `<tr><th>Account</th><th>Name</th><th>Map</th><th><input type="checkbox" id="checkAllAutoRS"/> Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>`
 
 
             for (const x in info) {
                 var infoht = info[x]
-                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
+                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" name="cayrs" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
             }
             setHtmlCssSelector('#customers', render)
         }
         setInterval(function () {
             eel.getInfo()(callback_getInfo);
         }, 5000);
-
+        $('#checkAllAutoRS').change(function () {
+            console.log("12345")
+            $('input[name="cayrs"]').prop('checked', $(this).prop('checked'));
+        });
         function autoCayZen(namehero) {
             var checkBox = document.getElementById("cayzen_" + namehero).checked;
             var value = "0"
