@@ -23,7 +23,7 @@
 
         <div class="w3-row">
             <a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Quản lý
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Quản lý
                     account</div>
             </a>
             <!-- <a href="javascript:void(0)" onclick="openTab(event, 'danhsachscript');">
@@ -34,16 +34,16 @@
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Thêm kịch
                     bản</div>
             </a> -->
-            <a href="javascript:void(0)" onclick="openTab(event, 'log');">
+            <!-- <a href="javascript:void(0)" onclick="openTab(event, 'log');">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Nhật ký
                     hoạt động</div>
-            </a>
+            </a> -->
             <a href="javascript:void(0)" onclick="openTab(event, 'caidatkhac');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Cài đặt
-                    khác</div>
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Cài đặt
+                </div>
             </a>
             <a href="javascript:void(0)" onclick="openTab(event, 'hdsd');">
-                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Hướng dẫn
+                <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Hướng dẫn
                     sử dụng</div>
             </a>
         </div>
@@ -53,6 +53,7 @@
         <div id="quanlyaccount" class="w3-container tabs" style="display:none">
             <table class="w3-table w3-bordered" id="customers">
             </table>
+            <br><textarea id="nhatkyhoatdong" rows="12" style="width: 100%; resize: none"></textarea>
         </div>
         <!-- <div id="danhsachscript" class="w3-container tabs" style="display:none">
             <table class="w3-table w3-bordered" id="tabledanhsachscript">
@@ -107,9 +108,9 @@
             </div>
             <div id="saveScriptStatus"></div>
         </div> -->
-        <div id="log" class="w3-container tabs" style="display:none">
+        <!-- <div id="log" class="w3-container tabs" style="display:none">
             <br><textarea id="nhatkyhoatdong" rows="20" style="width: 100%; resize: none"></textarea>
-        </div>
+        </div> -->
         <div id="caidatkhac" class="w3-container tabs" style="display:none">
             <br><br><input class="w3-check" id="showMain" type="checkbox" checked="checked">
             <label>Hiện main MU</label>
