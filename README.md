@@ -8,7 +8,7 @@
 
 <b>5. Thông tin phiên bản</b>
 
-- v1.0
+- v1.1
 
   - Bị ngắt kết nối sẽ thông báo về telegram
   - Bị pk ở lost7 sẽ tự về lost3 train tiếp, 1 lúc sau quay lại lost7
