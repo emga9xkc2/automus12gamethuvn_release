@@ -11,6 +11,7 @@
 - v1.1
 
   - Bị ngắt kết nối sẽ thông báo về telegram
+  - Khắc phục lỗi đang reset 1 acc bị ngắt kết nối cả dàn đứng chơi
   - Xóa nick bị ngắt kết nối trên giao diện, khi đăng nhập lại sẽ hiển thị lại
   - Bị pk ở lost7 sẽ tự về lost3 train tiếp, 1 lúc sau quay lại lost7
   - Bị pk 3 lần liên tục ở map Karutan2 sẽ về ngẫu nhiên map bất kỳ đứng chơi
