@@ -10,6 +10,17 @@
 
 - v1.0
 
+  - Bị ngắt kết nối sẽ thông báo về telegram
+  - Bị pk ở lost7 sẽ tự về lost3 train tiếp, 1 lúc sau quay lại lost7
+  - Bị pk 3 lần liên tục ở map Karutan2 sẽ về ngẫu nhiên map bất kỳ đứng chơi
+  - Bị pk lần 1. 5 phút quay lại bãi
+  - Bị pk lần 2. 20 phút quay lại bãi
+  - Bị pk lần 3. 40 phút quay lại bãi
+  - Bị pk lần 4. 60 phút quay lại bãi
+  - Quá 5 phút không bị pk tính số lần bị pk lại từ đầu
+
+- v1.0
+
   - Lệnh telegram:
   - Để ra lại bãi, chat: rabai TenNV
   - Để ra lại bãi ở 1 tọa độ mới, chat: rabai TenNV,TenMap,X,Y
