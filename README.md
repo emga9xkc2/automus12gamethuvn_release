@@ -10,6 +10,7 @@
 
 - v1.1
 
+  - Quét clone xung quanh để auto pk
   - Bị ngắt kết nối sẽ thông báo về telegram
   - Khi bị pk + bị theo dõi thông báo về telegram
   - Khắc phục lỗi đang reset 1 acc bị ngắt kết nối cả dàn đứng chơi
