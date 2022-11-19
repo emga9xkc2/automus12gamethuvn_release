@@ -21,7 +21,7 @@
   - Bị pk lần 2. 20 phút quay lại bãi
   - Bị pk lần 3. 40 phút quay lại bãi
   - Bị pk lần 4. 60 phút quay lại bãi
-  - Quá 5 phút không bị pk tính số lần bị pk lại từ đầu
+  - Quá 30 phút không bị pk tính số lần bị pk lại từ đầu
 
 - v1.0
 
