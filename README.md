@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v1.2
+
+  - Reset lần lượt từng acc, tránh disconnect
+
 - v1.1
 
   - Quét clone xung quanh để auto pk
