@@ -10,6 +10,7 @@
 
 - v1.2
 
+  - Không phải tích lại auto reset khi tắt tool mở lại
   - Reset lần lượt từng acc, tránh disconnect
 
 - v1.1
