@@ -8,7 +8,7 @@
 
 <b>5. Thông tin phiên bản</b>
 
-- v1.2
+- v1.3
 
   - Không phải tích lại auto reset khi tắt tool mở lại
   - Reset lần lượt từng acc, tránh disconnect
