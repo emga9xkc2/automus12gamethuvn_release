@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v1.4
+
+  - Fix lỗi nhận diện sai tên nhân vật
+
 - v1.3
 
   - Không phải tích lại auto reset khi tắt tool mở lại
