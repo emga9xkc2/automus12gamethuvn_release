@@ -8,7 +8,7 @@
 
 <b>5. Thông tin phiên bản</b>
 
-- v1.4
+- v1.5
 
   - Fix lỗi nhận diện sai tên nhân vật
 
