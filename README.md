@@ -14,6 +14,8 @@
 
   * Để sử dụng chế độ auto trên, bấm Z cài đặt KỸ NĂNG (ô bên trái) là skill ruby, KỸ NĂNG 2 (ô bên phải phía dưới) là skill mũi tên băng, các class khác tương tự.
 
+  - Thêm thông báo phiên bản mới khi có
+
 - v1.5
 
   - Fix lỗi nhận diện sai tên nhân vật
