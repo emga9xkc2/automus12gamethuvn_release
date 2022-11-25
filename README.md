@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v1.6
+
+  - Thêm chế độ cài skill ks ở map thấp, ví dụ map chính cài skill ruby, map thấp (lot7) cài mũi tên băng để ks
+
 - v1.5
 
   - Fix lỗi nhận diện sai tên nhân vật
