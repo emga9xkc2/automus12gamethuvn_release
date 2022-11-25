@@ -40,6 +40,7 @@
             </a> -->
             <a href="javascript:void(0)" onclick="openTab(event, 'caidatkhac');">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Cài đặt
+                    chung
                 </div>
             </a>
             <a href="javascript:void(0)" onclick="openTab(event, 'hdsd');">
@@ -112,8 +113,7 @@
             <br><textarea id="nhatkyhoatdong" rows="20" style="width: 100%; resize: none"></textarea>
         </div> -->
         <div id="caidatkhac" class="w3-container tabs" style="display:none">
-            <br><br><input class="w3-check" id="showMain" type="checkbox" checked="checked">
-            <label>Hiện main MU</label>
+
 
             <br><br><input class="w3-input w3-animate-input" type="text" id="tokenTelegram"
                 placeholder="Token telegram">
@@ -207,15 +207,12 @@
             eel.getSetting()(function (callback) {
                 var result = callback.result
                 var apiAnycaptcha = result.apiAnycaptcha
-                var showMain = result.showMain
-                if (showMain == 0) {
-                    showMain = false
-                }
-                // console.log(showMain)
+
+
                 var tokenTelegram = result.tokenTelegram
                 var apikeyActive = result.apikeyActive
                 setValueCssSelector("#apiAnycaptcha", apiAnycaptcha)
-                setCheckboxCssSelector("#showMain", showMain)
+
                 setValueCssSelector("#tokenTelegram", tokenTelegram)
                 setValueCssSelector("#apikeyActive", apikeyActive)
                 // console.log(info)
@@ -226,9 +223,9 @@
         function saveSetting() {
             apiAnycaptcha = getValue('#apiAnycaptcha')
             apikeyActive = getValue('#apikeyActive')
-            showMain = getCheckboxChecked('#showMain')
+
             tokenTelegram = getValue('#tokenTelegram')
-            eel.saveSetting(apiAnycaptcha, apikeyActive, showMain, tokenTelegram)(function (callback) {
+            eel.saveSetting(apiAnycaptcha, apikeyActive, tokenTelegram)(function (callback) {
                 var mess = callback.mess
                 if (mess == "success") {
                     setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
@@ -412,7 +409,8 @@
             var cmd = getValue("#cmd")
             var pass2 = getValue("#pass2")
             var sophutrs = getValue("#sophutrs")
-            eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs)(function (callback) {
+            var trainexp = getCheckboxChecked('#trainexp')
+            eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs, trainexp)(function (callback) {
                 console.log(callback)
                 var mess = callback.mess
                 if (mess != "success") {
@@ -475,7 +473,7 @@
         }
         function showCongDiem(hero) {
             document.getElementById('id01').style.display = 'block'
-            setHtmlCssSelector("#kichbannv", "Cộng điểm - " + hero)
+            setHtmlCssSelector("#kichbannv", "Cài đặt - " + hero)
             eel.getCongDiem(hero)(function (callback) {
                 var result = callback.result
                 var str = result.addstr
@@ -485,6 +483,10 @@
                 var cmd = result.addcmd
                 var pass2 = result.pass2
                 var sophutrs = result.sophutrs
+                var trainexp = result.trainexp
+                if (trainexp == 0) {
+                    trainexp = false
+                }
                 var listcheck = ""
                 var html = `
                 <br>
@@ -514,11 +516,12 @@
                 <label>Số phút reset / lần</label>
                 <input class="w3-input w3-border" id="sophutrs" type="number" value="${sophutrs ? sophutrs : '0'}"  placeholder="0">
                 </div>
+                <br><br><br><input class="w3-check" id="trainexp" type="checkbox">
+                <label>Vào phó bản exp khi bị pk (dung2, lost7)</label>
                
             
     
-            <br>
-            <br>
+            
             <br>
             <br><div class="w3-center">
                 <div class="w3-bar">
@@ -527,6 +530,7 @@
             </div>
             <div id="saveCongdiemStatus"></div><br><br>`
                 setHtmlCssSelector("#listkichbannv", html)
+                setCheckboxCssSelector("#trainexp", trainexp)
                 console.log(result);
             }
             )
@@ -538,7 +542,7 @@
 
             for (const x in info) {
                 var infoht = info[x]
-                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" name="cayrs" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
+                render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" name="cayrs" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cài đặt</button></td></tr>`
             }
             setHtmlCssSelector('#customers', render)
 

@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v1.7
+
+  - Thêm tùy chọn tự động vào phó bản exp khi bị pk map Dungeon và LostTower
+
 - v1.6
 
   - Thêm chế độ auto chỉnh skill để ks, ví dụ map chính cài skill ruby, map thấp (lost7) cài mũi tên băng để ks
