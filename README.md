@@ -10,7 +10,7 @@
 
 - v1.6
 
-  - Thêm chế độ cài skill ks ở map thấp, ví dụ map chính cài skill ruby, map thấp (lot7) cài mũi tên băng để ks
+  - Thêm chế độ auto chỉnh skill để ks, ví dụ map chính cài skill ruby, map thấp (lost7) cài mũi tên băng để ks
 
 - v1.5
 
