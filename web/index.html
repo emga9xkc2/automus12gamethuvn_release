@@ -19,7 +19,7 @@
 <body>
 
     <div class="w3-container">
-        <h2>AUTO MU SS12</h2>
+        <h2 id="info">AUTO MU SS12</h2>
 
         <div class="w3-row">
             <a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
@@ -541,11 +541,17 @@
                 render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" name="cayrs" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cộng điểm</button></td></tr>`
             }
             setHtmlCssSelector('#customers', render)
-            document.title = "AUTO MU SS12 " + callback.version
+
+            newtitle = "AUTO MU SS12 " + callback.version
+            document.title = newtitle
+            setHtmlCssSelector('#info', newtitle)
         }
         setInterval(function () {
             eel.getInfo()(callback_getInfo);
         }, 5000);
+
+
+
         $('#checkAllAutoRS').change(function () {
             console.log("12345")
             $('input[name="cayrs"]').prop('checked', $(this).prop('checked'));
