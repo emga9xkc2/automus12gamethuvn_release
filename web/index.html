@@ -162,10 +162,11 @@
                         class="w3-button w3-display-topright">&times;</span>
                     <h2 id="kichbannv">Chọn kịch bản</h2>
                 </header>
-                <div class="w3-container w3-card-4">
+                <div id="listkichbannv"></div>
+                <!-- <div class="w3-container w3-card-4">
                     <div id="listkichbannv">
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -502,41 +503,60 @@
                 }
                 var listcheck = ""
                 var html = `
-                <br>
+                <div class="w3-row">
+                    <div class="w3-half w3-container">                
                 <label>Sức mạnh</label>
                 <input class="w3-input w3-border" id="str" type="number" value="${str ? str : '0'}" placeholder="0">
-            
-                <br>
+            </div>
+                
+                <div class="w3-half w3-container">
                 <label>Nhanh nhẹn</label>
                 <input class="w3-input w3-border" id="agi" type="number" value="${agi ? agi : '0'}" placeholder="0">
-                <br>
+            </div></div>
+            <div class="w3-row">
+                    <div class="w3-half w3-container">   
                 <label>Thể lực</label>
                 <input class="w3-input w3-border" id="vit" type="number" value="${vit ? vit : '0'}"  placeholder="0">
-                <br>
+            </div>
+            <div class="w3-half w3-container">   
                 <label>Năng lượng</label>
                 <input class="w3-input w3-border" id="ene" type="number" value="${ene ? ene : '0'}"  placeholder="0">
-                <br>
-                
+            </div>
+        </div>
+        <div class="w3-row">
+        <div class="w3-half w3-container">   
                 <label>Lãnh đạo</label>
                 <input class="w3-input w3-border" id="cmd" type="number" value="${cmd ? cmd : '0'}"  placeholder="0">
-                <br>
                 
-                <div class="w3-half">          
+            
+        </div></div>
+        <div class="w3-row">
+                <div class="w3-half w3-container">          
                 <label>Mật khẩu web</label>
                 <input class="w3-input w3-border" id="pass2" type="text" value="${pass2 ? pass2 : '0'}"  placeholder="0">
                 </div>              
-                <div class="w3-half">
+                <div class="w3-half w3-container">
                 <label>Số phút reset / lần</label>
                 <input class="w3-input w3-border" id="sophutrs" type="number" value="${sophutrs ? sophutrs : '0'}"  placeholder="0">
                 </div>
-                <br><br><br><input class="w3-check" id="trainexp" type="checkbox">
-                <label>Vào phó bản exp khi bị pk (dung2, lost7)</label>
-                <br><input class="w3-check" id="trainstadium" type="checkbox">
-                <label>Vào stadium 30p khi bị pk (dung2, lost7)</label>
-                <br><input class="w3-check" id="annv" type="checkbox">
+            </div>    
+            <div class="w3-row">
+                <div class="w3-half w3-container">   
+                <input class="w3-check" id="trainexp" type="checkbox">
+                <label>Vào phó bản exp khi bị pk (Dungeon2, LostTower7)</label>
+            </div><div class="w3-half w3-container">   
+                <input class="w3-check" id="trainstadium" type="checkbox">
+                <label>Vào stadium 30p khi bị pk (Dungeon2, LostTower7)</label>
+            </div></div>
+            <div class="w3-row">
+                <div class="w3-half w3-container">   
+               <input class="w3-check" id="annv" type="checkbox">
                 <label>Ẩn nhân vật</label>
-                <br><input class="w3-check" id="anmain" type="checkbox">
+            </div><div class="w3-half w3-container">   
+                <input class="w3-check" id="anmain" type="checkbox">
                 <label>Ẩn main</label>
+            </div>
+        </div>
                
             
     
