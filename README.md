@@ -8,7 +8,7 @@
 
 <b>5. Thông tin phiên bản</b>
 
-- v1.7
+- v1.8
 
   - Thêm tùy chọn tự động vào phó bản exp khi bị pk map Dungeon và LostTower
 
