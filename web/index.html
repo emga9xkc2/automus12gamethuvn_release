@@ -141,8 +141,6 @@
             <p>- Ấn F7 để chạy auto ngay khi bị pk</p>
             <p>- Chat /tz để tắt auto nhặt zen</p>
             <p>- Chat /bz để bật auto nhặt zen</p>
-            <p>- Chat /tm để ẩn MU</p>
-            <p>- Chat /bm để hiện MU</p>
             <p>- Chat /mv 100 100 để tự di chuyển tới vị trí 100 100</p>
             <p>- Chat /kc để kẹp chuột phải</p>
             <p>- Nếu thoát auto rồi mà vẫn thấy auto hoạt động, hãy bấm tổ hợp phím Ctrl F4 để thoát hẳn</p>
@@ -410,7 +408,10 @@
             var pass2 = getValue("#pass2")
             var sophutrs = getValue("#sophutrs")
             var trainexp = getCheckboxChecked('#trainexp')
-            eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs, trainexp)(function (callback) {
+            var trainstadium = getCheckboxChecked('#trainstadium')
+            var annv = getCheckboxChecked('#annv')
+            var anmain = getCheckboxChecked('#anmain')
+            eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs, trainexp, trainstadium, annv, anmain)(function (callback) {
                 console.log(callback)
                 var mess = callback.mess
                 if (mess != "success") {
@@ -487,6 +488,18 @@
                 if (trainexp == 0) {
                     trainexp = false
                 }
+                var trainstadium = result.trainstadium
+                if (trainstadium == 0) {
+                    trainstadium = false
+                }
+                var annv = result.annv
+                if (annv == 0) {
+                    annv = false
+                }
+                var anmain = result.anmain
+                if (anmain == 0) {
+                    anmain = false
+                }
                 var listcheck = ""
                 var html = `
                 <br>
@@ -518,6 +531,12 @@
                 </div>
                 <br><br><br><input class="w3-check" id="trainexp" type="checkbox">
                 <label>Vào phó bản exp khi bị pk (dung2, lost7)</label>
+                <br><input class="w3-check" id="trainstadium" type="checkbox">
+                <label>Vào stadium 30p khi bị pk (dung2, lost7)</label>
+                <br><input class="w3-check" id="annv" type="checkbox">
+                <label>Ẩn nhân vật</label>
+                <br><input class="w3-check" id="anmain" type="checkbox">
+                <label>Ẩn main</label>
                
             
     
@@ -531,6 +550,9 @@
             <div id="saveCongdiemStatus"></div><br><br>`
                 setHtmlCssSelector("#listkichbannv", html)
                 setCheckboxCssSelector("#trainexp", trainexp)
+                setCheckboxCssSelector("#trainstadium", trainstadium)
+                setCheckboxCssSelector("#annv", annv)
+                setCheckboxCssSelector("#anmain", anmain)
                 console.log(result);
             }
             )
