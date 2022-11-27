@@ -383,8 +383,8 @@
             setHtmlCssSelector("#kichbannv", "Danh sách PK - " + hero)
             eel.showListPK(hero)(function (callback) {
                 var result = callback.result
-                var html = `<br><textarea id="listpk" rows="20" style="width: 100%; resize: none"></textarea>
-                <br><br>
+                var html = `<br><div class="w3-container"><textarea id="listpk" rows="15" style="width: 100%; resize: none"></textarea></div>
+                <br>
                 <div class="w3-row">
   <div class="w3-half w3-container">
     <button onclick="quetClone('${hero}')" class="w3-button w3-block w3-teal">Quét clone</button>
