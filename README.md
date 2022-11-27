@@ -8,6 +8,11 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v1.9
+
+  - Tự nhấn ok khi bị disconnect hoặc khi có thông báo có người vào nhóm
+  - Sửa 1 số lỗi nhỏ
+
 - v1.8
 
   - Thêm tùy chọn tự động vào phó bản exp khi bị pk map Dungeon và LostTower
