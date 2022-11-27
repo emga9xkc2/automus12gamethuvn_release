@@ -11,7 +11,7 @@
 - v2.0
 
   - Tự nhấn ok khi bị disconnect hoặc khi có thông báo có người vào nhóm
-  - Thêm tùy chọn tự động vào map stadium 30p khi bị pk map Dungeon và LostTower, tự sang bãi khác khi bãi định vào đã có > 2 người
+  - Thêm tùy chọn tự động vào map stadium 30p khi bị pk map Dungeon và LostTower, tự sang bãi khác khi bãi định vào đã có > 1 người
   - Sửa lỗi auto buff HP khi đang ở trong thành
 
 - v1.8
