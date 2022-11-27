@@ -8,10 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
-- v1.9
+- v2.0
 
   - Tự nhấn ok khi bị disconnect hoặc khi có thông báo có người vào nhóm
-  - Sửa 1 số lỗi nhỏ
+  - Thêm tùy chọn tự động vào map stadium 30p khi bị pk map Dungeon và LostTower, tự sang bãi khác khi bãi định vào đã có > 2 người
 
 - v1.8
 
