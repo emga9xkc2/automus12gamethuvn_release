@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v2.1
+
+  - Fix lỗi cộng điểm acc > 65k point
+
 - v2.0
 
   - Tự nhấn ok khi bị disconnect hoặc khi có thông báo có người vào nhóm
