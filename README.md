@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v2.2
+
+  - Thêm hack khoảng cách 1 số skill từ 6 lên 8
+
 - v2.1
 
   - Fix lỗi cộng điểm acc > 65k point
