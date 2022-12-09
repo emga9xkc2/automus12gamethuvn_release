@@ -10,6 +10,7 @@
 
 - v2.2
 
+  - Thêm auto cộng point khi point sót lớn hơn 1000. Để sử dụng hãy khi thêm dấu + ở phần cài đặt. Ví dụ: -1+ 500+
   - Thêm hack khoảng cách 1 số skill từ 6 lên 8
 
 - v2.1
