@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v2.4
+
+  - Fix lỗi bị reset hàng loạt 1 lúc
+
 - v2.3
 
   - Fix lỗi gom quái, khi bật chức năng gom quái vẫn reset bình thường, chỉ gom quái khi đứng đúng map đã cài auto
