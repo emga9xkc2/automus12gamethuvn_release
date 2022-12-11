@@ -8,6 +8,11 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v2.3
+
+  - Fix lỗi gom quái, khi bật chức năng gom quái vẫn reset bình thường, chỉ gom quái khi đứng đúng map đã cài auto
+  - Sửa thời gian reset, nêú đang trong thời gian x2 master sẽ không reset
+
 - v2.2
 
   - Thêm auto cộng point khi point sót lớn hơn 1000. Để sử dụng hãy khi thêm dấu + ở phần cài đặt. Ví dụ: -1+ 500+
