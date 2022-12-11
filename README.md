@@ -8,7 +8,7 @@
 
 <b>5. Thông tin phiên bản</b>
 
-- v2.4
+- v2.5
 
   - Fix lỗi bị reset hàng loạt 1 lúc
 
