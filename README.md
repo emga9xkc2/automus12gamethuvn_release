@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v2.6
+
+  - Thêm chức năng ngừng auto ra bãi khi bị pk
+
 - v2.5
 
   - Fix lỗi bị reset hàng loạt 1 lúc
