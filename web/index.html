@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>AUTO MU SS12</title>
+<!-- <title>AUTO MU SS12</title> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -19,7 +19,7 @@
 <body>
 
 	<div class="w3-container">
-		<h2 id="info">AUTO MU SS12</h2>
+		<!-- <h2 id="info">AUTO MU SS12</h2> -->
 
 		<div class="w3-row">
 			<a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
@@ -477,7 +477,7 @@
 				setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
                     <h3>Quét clone thành công</h3>                
                 </div>`)
-				txtArea.value = txtArea.value + "\r\n" + result;
+				txtArea.value = result + "\r\n" + txtArea.value;
 			}
 			)
 		}
@@ -596,9 +596,9 @@
 			}
 			setHtmlCssSelector('#customers', render)
 
-			newtitle = "AUTO MU SS12 " + callback.version
-			document.title = newtitle
-			setHtmlCssSelector('#info', newtitle)
+			// newtitle = "AUTO MU SS12 " + callback.version
+			// document.title = newtitle
+			// setHtmlCssSelector('#info', newtitle)
 		}
 		setInterval(function () {
 			eel.getInfo()(callback_getInfo);
