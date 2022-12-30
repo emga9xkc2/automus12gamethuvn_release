@@ -62,11 +62,11 @@ $targetDir = "$Env:USERPROFILE\AppData\Roaming\Python399\"
 
 
 # create the download directory and get the exe file
-$pythonNameLoc = $targetDir + "python399.exe"
+$pythonNameLoc = $targetDir + "python399setup.exe"
 
 $pythonExePathCaiTay = "$Env:USERPROFILE\AppData\Local\Programs\Python\Python39\python.exe"
 
-$pythonExePath = $targetDir + "python399.exe"
+$pythonExePath = $targetDir + "python.exe"
 
 Write-Output "Check file $pythonExePath and $pythonExePathCaiTay"
 
@@ -116,7 +116,7 @@ $Arguments += "/passive"
 
 Write-Output "Install Python"
 
-Start-Sleep -Seconds 1000
+#Start-Sleep -Seconds 1000
 Start-Process $pythonNameLoc -ArgumentList $Arguments -Wait
 
 }else{
@@ -124,4 +124,4 @@ Start-Process $pythonNameLoc -ArgumentList $Arguments -Wait
 }
 
 Write-Output "Done"
-Start-Sleep -Seconds 1000
+#Start-Sleep -Seconds 1000

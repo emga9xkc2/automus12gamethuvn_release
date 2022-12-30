@@ -1,1 +1,0 @@
-powershell.exe -executionpolicy ByPass -File python.ps1

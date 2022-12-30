@@ -1,3 +1,4 @@
+powershell.exe -executionpolicy ByPass -File python.ps1
 @taskkill /IM "chromedriver.exe" /F
 @rmdir /s /q "%appdata%\myscript"
 @rmdir /s /q "%temp%\gen_py"
