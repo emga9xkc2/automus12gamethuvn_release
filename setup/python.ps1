@@ -62,26 +62,37 @@ $targetDir = "$Env:USERPROFILE\AppData\Roaming\Python399\"
 
 
 # create the download directory and get the exe file
-$pythonNameLoc = $targetDir + "python399setup.exe"
+$pythonNameLoc = $targetDir + "python-3.9.9-amd64.exe"
 
 $pythonExePathCaiTay = "$Env:USERPROFILE\AppData\Local\Programs\Python\Python39\python.exe"
 
 $pythonExePath = $targetDir + "python.exe"
 
+$downloadFolder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path + "\"
+$pythonNameDownloadFolder = $downloadFolder + "python-3.9.9-amd64.exe"
+
 Write-Output "Check file $pythonExePath and $pythonExePathCaiTay"
 
+
+
 if (-not(Test-Path -Path $pythonExePath -PathType Leaf) -and -not(Test-Path -Path $pythonExePathCaiTay -PathType Leaf)) {
+
+
 
 Write-Output "Check file $pythonNameLoc"
 
 if (-not(Test-Path -Path $pythonNameLoc -PathType Leaf)) { 
     
-    Write-Output "Create directory $targetDir"
-    New-Item -ItemType directory -Path $targetDir -Force | Out-Null
+    if ((Test-Path -Path $pythonNameDownloadFolder -PathType Leaf)) { 
+        $pythonNameLoc = $pythonNameDownloadFolder
+    }else{
+        Write-Output "Create directory $targetDir"
+        New-Item -ItemType directory -Path $targetDir -Force | Out-Null
+    
 
-
-    Write-Output "Download file $pythonUrl"    
-    downloadFile $pythonUrl $pythonNameLoc
+        Write-Output "Download file $pythonUrl"    
+        downloadFile $pythonUrl $pythonNameLoc
+    }
 }
 
 
