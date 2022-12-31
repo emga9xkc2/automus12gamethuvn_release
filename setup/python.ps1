@@ -1,4 +1,10 @@
-
+#Set-ItemProperty -Path "C:\Users\Admin\Downloads\ChromeSetup.exe" -Confirm:$false
+#[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Users\Admin\Downloads\python-3.9.9-embed-amd64\Scripts","User")
+#[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Users\Admin\Downloads\python-3.9.9-embed-amd64","User")
+#return
+$pyversion = python --version
+Write-Output $pyversion
+#return
 function DownloadFile($url, $targetFile)
 {
    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -56,23 +62,23 @@ $pythonUrl = "https://www.python.org/ftp/python/3.9.9/python-3.9.9-amd64.exe"
 
 # Installation Directory
 # Some packages look for Python here
-$targetDir = "$Env:USERPROFILE\AppData\Roaming\Python399\"
+
+$targetDir = "$Env:USERPROFILE\AppData\Roaming\Python399"
 
 
 
 
 # create the download directory and get the exe file
-$pythonNameLoc = $targetDir + "python-3.9.9-amd64.exe"
+$pythonNameLoc = $targetDir + "\python-3.9.9-amd64.exe"
 
 $pythonExePathCaiTay = "$Env:USERPROFILE\AppData\Local\Programs\Python\Python39\python.exe"
 
-$pythonExePath = $targetDir + "python.exe"
+$pythonExePath = $targetDir + "\python.exe"
 
-$downloadFolder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path + "\"
-$pythonNameDownloadFolder = $downloadFolder + "python-3.9.9-amd64.exe"
+$downloadFolder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
+$pythonNameDownloadFolder = $downloadFolder + "\python-3.9.9-amd64.exe"
 
 Write-Output "Check file $pythonExePath and $pythonExePathCaiTay"
-
 
 
 if (-not(Test-Path -Path $pythonExePath -PathType Leaf) -and -not(Test-Path -Path $pythonExePathCaiTay -PathType Leaf)) {
@@ -123,7 +129,7 @@ $Arguments += 'Include_launcher="1"'
 $Arguments += 'Include_launcher="1"'
 $Arguments += 'Include_launcher="1"'
 $Arguments += 'Include_launcher="1"'
-$Arguments += "/passive"
+$Arguments += "/quiet"
 
 Write-Output "Install Python"
 
