@@ -2,8 +2,7 @@
 #[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Users\Admin\Downloads\python-3.9.9-embed-amd64\Scripts","User")
 #[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Users\Admin\Downloads\python-3.9.9-embed-amd64","User")
 #return
-$pyversion = python --version
-Write-Output $pyversion
+
 #return
 function DownloadFile($url, $targetFile)
 {
@@ -53,6 +52,9 @@ function DownloadFile($url, $targetFile)
    $responseStream.Dispose()
 
 }
+
+$pyversion = python --version
+Write-Output $pyversion
 
 # This is the link to download Python 3.6.7 from Python.org
 # See https://www.python.org/downloads/

@@ -8,6 +8,10 @@
 
 <b>5. Thông tin phiên bản</b>
 
+- v2.7
+
+  - Fix server 18
+
 - v2.6
 
   - Thêm chức năng ngừng auto ra bãi khi bị pk
