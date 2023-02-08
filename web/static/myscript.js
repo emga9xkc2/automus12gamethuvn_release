@@ -257,6 +257,16 @@ function Sleep(ms) {
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
+function disableF5() {
+  const cars = ["F1", "F5", "F11", "F12"];
+  document.addEventListener("keydown", (e) => {
+    console.log(e.key);
+    if (cars.indexOf(e.key) >= 0) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
+}
 includeHTML();
 // CheckLogin();
 editClassActive();

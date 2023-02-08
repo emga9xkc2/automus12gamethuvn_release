@@ -180,6 +180,8 @@
 	</div>
 
 	<script>
+
+		disableF5();
 		var mapOptions = "<option>Elbeland3</option><option>Devias2</option><option>Dungeon2</option><option>LostTower3</option><option>LostTower5</option><option>LostTower7</option><option>Tarkan2</option><option>Icarus</option><option>Kanturu_ruin2</option><option>Kanturu_ruin_island</option><option>Kanturu_Remain</option><option>Karutan1</option><option>Karutan2</option><option>Barrack</option><option>Kalima</option>";
 		var defaultMapOptions = "<option disabled selected>Chọn map</option>" + mapOptions
 		setHtmlCssSelector("#mapSelect", defaultMapOptions);
@@ -585,6 +587,7 @@
 			}
 			)
 		}
+
 		function callback_getInfo(callback) {
 			var info = callback.result
 			var render = `<tr><th>Account</th><th>Name</th><th>Map</th><th>Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>`

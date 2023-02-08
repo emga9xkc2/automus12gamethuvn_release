@@ -1,6 +1,4 @@
-
 import sys, signal, os
-from turtle import ht
 import zipfile
 import requests, shutil
 from distutils.dir_util import copy_tree
