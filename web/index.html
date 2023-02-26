@@ -156,6 +156,9 @@
 						bản xem tại
 						đây</b></a>
 			<div id="hdsdStatus"></div>
+			<b>
+				<div id="hsd" style="color:hsl(12, 100%, 50%)"></div>
+			</b>
 			</p>
 
 
@@ -589,7 +592,10 @@
 		}
 
 		function callback_getInfo(callback) {
+			console.log(callback)
 			var info = callback.result
+			var keystatus = callback.keystatus
+			setHtmlCssSelector("#hsd", keystatus.status)
 			var render = `<tr><th>Account</th><th>Name</th><th>Map</th><th>Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>`
 
 
