@@ -15,5 +15,5 @@ ahk
 ahk[binary]
 python-telegram-bot
 numpy
-pywebview
-cefpython3
+#pywebview
+#cefpython3
