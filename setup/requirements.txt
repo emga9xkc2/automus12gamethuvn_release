@@ -6,14 +6,14 @@ requests
 wmi
 pyautoit
 psutil
-pytesseract
+# pytesseract
 Pillow
 timestring
 pynput
 aes-everywhere
 ahk
 ahk[binary]
-python-telegram-bot
+# python-telegram-bot
 numpy
 #pywebview
 #cefpython3

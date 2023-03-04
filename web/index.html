@@ -422,9 +422,10 @@
 			var sophutrs = getValue("#sophutrs")
 			var trainexp = getCheckboxChecked('#trainexp')
 			var trainstadium = getCheckboxChecked('#trainstadium')
+			var resetingame = getCheckboxChecked('#resetingame')
 			var annv = getCheckboxChecked('#annv')
 			var anmain = getCheckboxChecked('#anmain')
-			eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs, trainexp, trainstadium, annv, anmain)(function (callback) {
+			eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs, trainexp, trainstadium, annv, anmain, resetingame)(function (callback) {
 				console.log(callback)
 
 				var mess = callback.mess
@@ -514,6 +515,10 @@
 				if (anmain == 0) {
 					anmain = false
 				}
+				var resetingame = result.resetingame
+				if (resetingame == 0) {
+					resetingame = false
+				}
 				var listcheck = ""
 				var html = `
                 <div class="w3-row">
@@ -569,6 +574,10 @@
                 <input class="w3-check" id="anmain" type="checkbox">
                 <label>Ẩn main</label>
             </div>
+            </div><div class="w3-half w3-container">   
+                <input class="w3-check" id="resetingame" type="checkbox">
+                <label>Reset ingame</label>
+            </div>
         </div>
                
             
@@ -586,6 +595,7 @@
 				setCheckboxCssSelector("#trainstadium", trainstadium)
 				setCheckboxCssSelector("#annv", annv)
 				setCheckboxCssSelector("#anmain", anmain)
+				setCheckboxCssSelector("#resetingame", resetingame)
 				console.log(result);
 			}
 			)

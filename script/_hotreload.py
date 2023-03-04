@@ -1,5 +1,9 @@
-def function1(args):
-    print(args)
+import time
+
+
+def function1(self):
+    
+    pass
 
 
 def function2(args):
