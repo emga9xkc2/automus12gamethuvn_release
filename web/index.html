@@ -149,7 +149,8 @@
 					style="color:hsl(246, 100%, 50%)">https://t.me/thoconlonton</a></p>
 			<p>- Liên hệ facebook: <a href="https://www.facebook.com/profile.php?id=100041831656067" target="_blank"
 					style="color:hsl(246, 100%, 50%)">https://www.facebook.com/profile.php?id=100041831656067</a></p>
-			<p><a style="color:hsl(12, 100%, 50%)" href="#" onclick="autoUpdate()"><b>- Cập nhật phiên bản mới</b></a>
+			<p><a style="color:hsl(12, 100%, 50%)" href="#" id="updateversion"><b>- Cập nhật phiên bản mới</b></a>
+
 			<p><a target="_blank" style="color:hsl(207, 100%, 50%)"
 					href="https://github.com/emga9xkc2/automus12gamethuvn_release/blob/main/README.md"><b>- Chi tiết
 						phiên
@@ -159,6 +160,11 @@
 			<b>
 				<div id="hsd" style="color:hsl(12, 100%, 50%)"></div>
 			</b>
+			<div class="w3-border" id="progresss" style="visibility: hidden;">
+				<div id="progress" class="w3-container w3-padding w3-blue" style="width: 0%; visibility: hidden;">
+					<div class="w3-center" id="progressValue" style="visibility: hidden;">0%</div>
+				</div>
+			</div>
 			</p>
 
 
@@ -250,10 +256,37 @@
 			}
 			)
 		}
-		function autoUpdate() {
+		eel.expose(update_progress);
+		function update_progress(percent) {
+			percent = percent.toString()
+			var progressValue = ""
+			if (percent.includes("_")) {
+				progressValue = " " + percent.split("_")[1]
+				percent = percent.split("_")[0]
+				if (progressValue.includes("/")) {
+					progressValue = "(" + progressValue + ")"
+				}
+			}
+			percent = parseInt(percent)
+			if (percent == 0) {
+				$("#progresss").css("visibility", "visible")
+				$("#progress").css("visibility", "visible")
+				$("#progressValue").css("visibility", "visible")
+				return
+			}
+			$("#progress").css("width", percent + "%")
+			if (percent > 0) {
+				$("#progressValue").html(percent + "%" + progressValue);
+			}
+			// $("#progress").val(percent)
+		}
+
+		$("#updateversion").bind("click", function () {
+			// alert("1234")
 			setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
                     <h3>Xin chờ...</h3>
                 </div>`)
+			update_progress(0)
 			eel.autoUpdate()(function (callback) {
 				var mess = callback.mess
 				if (mess == "success") {
@@ -268,7 +301,7 @@
 				console.log(callback)
 			}
 			)
-		}
+		});
 		function callback_saveScript(callback) {
 			var mess = callback.mess
 			if (mess == "success") {
