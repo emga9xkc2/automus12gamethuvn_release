@@ -2,6 +2,7 @@ pymem
 pyautogui
 gevent==22.10.1
 eel
+tqdm
 requests
 wmi
 pyautoit
