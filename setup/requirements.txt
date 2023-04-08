@@ -4,12 +4,12 @@ gevent==22.10.1
 eel
 tqdm
 requests
-wmi
+#wmi
 pyautoit
 psutil
 # pytesseract
 Pillow
-timestring
+#timestring
 pynput
 aes-everywhere
 ahk
