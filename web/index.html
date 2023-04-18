@@ -7,26 +7,118 @@
 <head>
 	<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 	<script src="/static/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/eel.js"></script>
 	<script src="/static/myscript.js"></script>
 	<link href="/static/toast/toastr.css" rel="stylesheet" />
 	<script src="/static/toast/toastr.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<script type="text/javascript" src="/eel.js"></script>
 
 
 </head>
 
 <body>
+	<style>
+		.bold {
+			font-weight: bold;
+		}
 
+		.btn {
+			background-color: DodgerBlue;
+			border: none;
+			color: white;
+			padding: 10px 15px;
+			font-size: 12px;
+			cursor: pointer;
+			width: 41.16px;
+			margin-bottom: 5px;
+		}
+
+		.settingcss {
+			background-color: rgb(218, 18, 25);
+			border: none;
+			color: white;
+			padding: 1px 5px;
+			font-size: 10px;
+			cursor: pointer;
+			margin-left: 8px;
+			border-radius: 7px;
+		}
+
+		/* Darker background on mouse-over */
+		.settingcss:hover {
+			background-color: rgb(200, 22, 156);
+		}
+
+		.btn:hover {
+			background-color: RoyalBlue;
+		}
+
+		.newp {
+			line-height: 2.5;
+		}
+
+		.tabs {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.tab {
+			color: blue;
+			border: none;
+			flex: 1;
+			text-align: center;
+		}
+
+		.tabs .tab {
+			border: none;
+		}
+
+		/* Áp dụng cho tab có class là "active" */
+		.tabs .tab.active {
+			border: none;
+		}
+
+		.tab.active::after {
+			content: "";
+			display: block;
+			height: 4px;
+			/* background-color: blue; */
+			border-bottom: 3px solid red;
+		}
+
+		.popup {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		.popup-content {
+			font-size: 15px;
+			background-color: white;
+			margin: 10% auto;
+			padding: 10px;
+			border: 1px solid #888;
+			width: 80%;
+			max-width: 800px;
+
+		}
+	</style>
 	<div class="w3-container">
 		<!-- <h2 id="info">AUTO MU SS12</h2> -->
 
-		<div class="w3-row">
-			<a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
+		<!-- <div class="w3-row"> -->
+		<!-- <a href="javascript:void(0)" onclick="openTab(event, 'quanlyaccount');">
 				<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Quản lý
 					account</div>
-			</a>
-			<!-- <a href="javascript:void(0)" onclick="openTab(event, 'danhsachscript');">
+			</a> -->
+		<!-- <a href="javascript:void(0)" onclick="openTab(event, 'danhsachscript');">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Danh sách
                     kịch bản</div>
             </a>
@@ -34,11 +126,11 @@
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:20%">Thêm kịch
                     bản</div>
             </a> -->
-			<!-- <a href="javascript:void(0)" onclick="openTab(event, 'log');">
+		<!-- <a href="javascript:void(0)" onclick="openTab(event, 'log');">
                 <div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:25%">Nhật ký
                     hoạt động</div>
             </a> -->
-			<a href="javascript:void(0)" onclick="openTab(event, 'caidatkhac');">
+		<!-- <a href="javascript:void(0)" onclick="openTab(event, 'caidatkhac');">
 				<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Cài đặt
 					chung
 				</div>
@@ -46,153 +138,306 @@
 			<a href="javascript:void(0)" onclick="openTab(event, 'hdsd');">
 				<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-padding" style="width:33%">Hướng dẫn
 					sử dụng</div>
-			</a>
-		</div>
+			</a> -->
+		<!-- </div> -->
 
 
 
-		<div id="quanlyaccount" class="w3-container tabs" style="display:none">
-			<table class="w3-table w3-bordered" id="customers">
+		<div id="quanlyaccount" class="tabs" style="display:block">
+			<table class="w3-table w3-bordered" id="table">
+				<tr>
+					<th>Account</th>
+					<th>Trạng thái</th>
+				</tr>
 			</table>
-			<br><textarea id="nhatkyhoatdong" rows="12" style="width: 100%; resize: none"></textarea>
 		</div>
-		<!-- <div id="danhsachscript" class="w3-container tabs" style="display:none">
-            <table class="w3-table w3-bordered" id="tabledanhsachscript">
-            </table>
-        </div>
+		<style>
+			.tabs {
+				display: flex;
+			}
 
-        <div id="script" class="w3-container tabs" style="display:none">
-            <br><input class="w3-input w3-animate-input" type="text" id="nameScript" placeholder="Nhập tên script">
-            <br>
-            <select class="w3-select" id="mapSelect">
-            </select>
-            <br>
-            <br>
-            <div class="w3-half">
-                <label>Tọa độ x</label>
-                <input class="w3-input w3-border" id="toaDoX" type="number" placeholder="X">
-            </div>
-            <div class="w3-half">
-                <label>Tọa độ y</label>
-                <input class="w3-input w3-border" id="toaDoY" type="number" placeholder="Y">
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="w3-half">
-                <label>Level nhỏ nhất</label>
-                <input class="w3-input w3-border" id="levelmin" type="number" placeholder="1">
-            </div>
-            <div class="w3-half">
-                <label>Level lớn nhất</label>
-                <input class="w3-input w3-border" id="levelmax" type="number" placeholder="400">
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div>
-                <label>Thời gian quay lại map khi bị PK (phút)</label>
-                <input class="w3-input w3-border" id="timequaylaikhibipk" type="number" value="30">
-            </div>
+			.tab {
+				padding: 10px;
+				border: 1px solid #ccc;
+				cursor: pointer;
+			}
 
 
-            <input class="w3-check" id="checkNhatZen" type="checkbox" checked="checked">
-            <label>Nhặt zen</label>
-            <br>
-            <br>
-            <div class="w3-center">
-                <div class="w3-bar">
-                    <button onclick="saveScript()" class="w3-button w3-block w3-teal">Lưu lại</button>
-                </div>
-            </div>
-            <div id="saveScriptStatus"></div>
-        </div> -->
-		<!-- <div id="log" class="w3-container tabs" style="display:none">
-            <br><textarea id="nhatkyhoatdong" rows="20" style="width: 100%; resize: none"></textarea>
-        </div> -->
-		<div id="caidatkhac" class="w3-container tabs" style="display:none">
 
+			.tab-content {
+				display: none;
+			}
 
-			<br><br><input class="w3-input w3-animate-input" type="text" id="tokenTelegram"
-				placeholder="Token telegram">
-			<br><input class="w3-input w3-animate-input" type="text" id="apiAnycaptcha"
-				placeholder="API Key anycaptcha.com">
+			.tab-content.active {
+				display: block;
+			}
 
-			<br>
-			<div class="w3-threequarter"><input class="w3-input w3-animate-input" type="text" id="apikeyActive"
-					placeholder="Key kích hoạt tài khoản"></div>
-			<button onclick="kichHoatTaiKhoan()" class="w3-button w3-green w3-right">Kích hoạt tài khoản</button>
-			<br>
-			<br>
-			<br>
-			<div class="w3-center">
-				<div class="w3-bar">
-					<button onclick="saveSetting()" class="w3-button w3-block w3-teal">Lưu lại</button>
+			.fixline {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: 5px;
+				/* Khoảng cách giữa các div có class fixline */
+			}
+
+			.fixline label {
+				/* font-weight: bold; */
+				flex: 1 0 1;
+				/* Tự động điều chỉnh độ rộng của label */
+				margin-right: 5px;
+				/* Khoảng cách giữa label và input */
+			}
+
+			.fixline input {
+				flex: 1 0 1;
+				/* Tự động điều chỉnh độ rộng của input */
+			}
+		</style>
+
+		<div id="pid" value="">
+			<div class="tabs">
+				<div class="tab active" data-tab="tab1">Thông tin</div>
+				<div class="tab" data-tab="tab2">Tiện ích</div>
+				<div class="tab" data-tab="tab3">Cài đặt reset</div>
+			</div>
+			<div class="tab-content" id="tab1">
+				<div class="fixline">
+					<label>Tài khoản</label>
+					<label id="taikhoandangnhap"></label>
 				</div>
-			</div>
-			<div id="saveSettingStatus"></div>
-		</div>
-		<div id="hdsd" class="w3-container tabs" style="display:none">
-			<p>- Ấn F2 để lưu tọa độ bãi cần train</p>
-			<p>- Ấn F3 để tạm dừng auto</p>
-			<p>- Ấn F4 để tiếp tục chạy auto</p>
-			<p>- Ấn F7 để chạy auto ngay khi bị pk</p>
-			<p>- Auto buff pc sum: vào thư mục data, tạo file buffpc.txt thêm nhân vật sum vào rồi lưu lại</p>
-			<p>- Chat /ta để tắt auto ra bãi khi bị pk. Chat /ba để bật lại auto</p>
-			<p>- Chat /bz để bật auto nhặt zen. Chat /tz để tắt auto nhặt zen</p>
-			<p>- Chat /mv 100 100 để tự di chuyển tới vị trí 100 100</p>
-			<p>- Chat /kc để kẹp chuột phải</p>
-			<p>- Chat /gom để bật gom quái. Chat /tg để tắt gom quái</p>
-			<p>- Chat /gomz để bật gom quái, kể cả khi có người khác bên cạnh. Chat /tg để tắt gom quái</p>
-			<p>- Nếu thoát auto rồi mà vẫn thấy auto hoạt động, hãy bấm tổ hợp phím Ctrl F4 để thoát hẳn</p>
-			<p>- Liên hệ telegram: <a href="https://t.me/thoconlonton" target="_blank"
-					style="color:hsl(246, 100%, 50%)">https://t.me/thoconlonton</a></p>
-			<p>- Liên hệ facebook: <a href="https://www.facebook.com/profile.php?id=100041831656067" target="_blank"
-					style="color:hsl(246, 100%, 50%)">https://www.facebook.com/profile.php?id=100041831656067</a></p>
-			<p><a style="color:hsl(12, 100%, 50%)" href="#" id="updateversion"><b>- Cập nhật phiên bản mới</b></a>
-
-			<p><a target="_blank" style="color:hsl(207, 100%, 50%)"
-					href="https://github.com/emga9xkc2/automus12gamethuvn_release/blob/main/README.md"><b>- Chi tiết
-						phiên
-						bản xem tại
-						đây</b></a>
-			<div id="hdsdStatus"></div>
-			<b>
-				<div id="hsd" style="color:hsl(12, 100%, 50%)"></div>
-			</b>
-			<div class="w3-border" id="progresss" style="visibility: hidden;">
-				<div id="progress" class="w3-container w3-padding w3-blue" style="width: 0%; visibility: hidden;">
-					<div class="w3-center" id="progressValue" style="visibility: hidden;">0%</div>
+				<div class="fixline">
+					<label>Nhân vật</label>
+					<label id="namehero"></label>
 				</div>
-			</div>
-			</p>
+				<div class="fixline">
+					<label>Class</label>
+					<label id="class"></label>
+				</div>
+				<div class="fixline">
+					<label>Bản đồ</label>
+					<label id="map"></label>
+				</div>
+				<div class="fixline">
+					<label>Level</label>
+					<label id="level"></label>
+				</div>
 
-
-
-		</div>
-		<div id="id01" class="w3-modal">
-			<div class="w3-modal-content w3-animate-top w3-card-4">
-				<header class="w3-container w3-teal">
-					<span onclick="document.getElementById('id01').style.display='none'"
-						class="w3-button w3-display-topright">&times;</span>
-					<h2 id="kichbannv">Chọn kịch bản</h2>
-				</header>
-				<div id="listkichbannv"></div>
-				<!-- <div class="w3-container w3-card-4">
-                    <div id="listkichbannv">
-                    </div>
-                </div> -->
 
 			</div>
+			<div class="tab-content" id="tab2">
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="autotrain" type="checkbox">
+					<label>Auto Train</label>
+				</div>
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="autoreset" type="checkbox">
+					<label>Auto Reset</label>
+				</div>
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="autopk" type="checkbox">
+					<label>Auto PK</label>
+
+					<button class="settingcss" style="display:inline; background-color:red" id="caidatautopk"
+						title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
+
+				</div>
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="trainexp" type="checkbox">
+					<label>Vào phó bản exp khi bị pk (Dungeon2, LostTower7)</label>
+				</div>
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="trainstadium" type="checkbox">
+					<label>Vào stadium 30p khi bị pk (Dungeon2, LostTower7)</label>
+				</div>
+
+
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="annv" type="checkbox">
+					<label>Ẩn nhân vật</label>
+				</div>
+				<div class="w3-row">
+					<input class="w3-check" name="autosavecheckbox" id="anmain" type="checkbox">
+					<label>Ẩn main</label>
+				</div>
+
+
+			</div>
+			<div class="tab-content" id="tab3">
+
+				<div class="fixline">
+					<label>Sức mạnh</label>
+					<input name="autosavetxt" id="addstr" type="text" value="" placeholder="0">
+				</div>
+
+				<div class="fixline">
+					<label>Nhanh nhẹn</label>
+					<input name="autosavetxt" id="addagi" type="text" value="" placeholder="0">
+				</div>
+
+
+				<div class="fixline">
+					<label>Thể lực</label>
+					<input name="autosavetxt" id="addvit" type="text" value="" placeholder="0">
+				</div>
+				<div class="fixline">
+					<label>Năng lượng</label>
+					<input name="autosavetxt" id="addene" type="text" value="" placeholder="0">
+				</div>
+
+				<div class="fixline">
+					<label>Lãnh đạo</label>
+					<input name="autosavetxt" id="addcmd" type="text" value="" placeholder="0">
+
+
+				</div>
+
+				<div class="fixline">
+					<label>Mật khẩu web</label>
+					<input name="autosavetxt" id="pass2" type="text" value="" placeholder="0">
+				</div>
+				<div class="fixline">
+					<label>Số phút reset / lần</label>
+					<input name="autosavetxt" id="sophutrs" type="number" value="" placeholder="0">
+				</div>
+
+				<input class="w3-check" name="autosavecheckbox" id="resetingame" type="checkbox">
+				<label>Reset ingame</label>
+
+			</div>
+
 		</div>
+
+
+
+
+		<br><textarea id="nhatkyhoatdong" rows="12" style="width: 100%; resize: none"></textarea>
+		<div style="float: left;">
+			<p id="user" style="display:inline; line-height: 2.5;"></p><button class="settingcss"
+				style="display:inline; background-color:DodgerBlue" id="activeaccount" title="Kích hoạt tài khoản"><i
+					class="fa fa-user-circle"></i></button>
+			<p id="user" style="display:inline; line-height: 2.5;"></p><button class="settingcss"
+				style="display:inline; background-color:blueviolet" id="huongdansudung" title="Hướng dẫn sử dụng"><i
+					class="fa fa-book"></i></button>
+		</div>
+
+
+
+
+		<div style="float: right;">
+			<p id="version" style="display:inline;">...</p>
+			<button class="settingcss" style="color: rgb(212, 255, 0); display:inline;" id="updateversion"
+				title="Cập nhật phiên bản mới"><i class="fa fa-download"></i></button>
+		</div>
+	</div>
+
+	<div id="caidatkhac" class="w3-container tabs" style="display:none">
+
+
+		<br><br><input class="w3-input w3-animate-input" type="text" id="tokenTelegram" placeholder="Token telegram">
+		<br><input class="w3-input w3-animate-input" type="text" id="apiAnycaptcha"
+			placeholder="API Key anycaptcha.com">
+
+		<br>
+
+		<br>
+		<div class="w3-center">
+			<div class="w3-bar">
+				<button onclick="saveSetting()" class="w3-button w3-block w3-teal">Lưu lại</button>
+			</div>
+		</div>
+		<div id="saveSettingStatus"></div>
+	</div>
+	<div class="popup">
+		<div class="popup-content">
+			<!-- Nội dung popup -->
+			<div id="hdsd">
+				<p>- Ấn F2 để lưu tọa độ bãi cần train</p>
+				<p>- Ấn F3 để tạm dừng auto</p>
+				<p>- Ấn F4 để tiếp tục chạy auto</p>
+				<p>- Ấn F7 để chạy auto ngay khi bị pk</p>
+				<p>- Auto buff pc sum: vào thư mục data, tạo file buffpc.txt thêm nhân vật sum vào rồi lưu lại</p>
+				<p>- Chat /ta để tắt auto ra bãi khi bị pk. Chat /ba để bật lại auto</p>
+				<p>- Chat /bz để bật auto nhặt zen. Chat /tz để tắt auto nhặt zen</p>
+				<p>- Chat /mv 100 100 để tự di chuyển tới vị trí 100 100</p>
+				<p>- Chat /kc để kẹp chuột phải</p>
+				<p>- Chat /gom để bật gom quái. Chat /tg để tắt gom quái</p>
+				<p>- Chat /gomz để bật gom quái, kể cả khi có người khác bên cạnh. Chat /tg để tắt gom quái</p>
+				<p>- Nếu thoát auto rồi mà vẫn thấy auto hoạt động, hãy bấm tổ hợp phím Ctrl F4 để thoát hẳn</p>
+				<p>- Liên hệ telegram: <a href="https://t.me/thoconlonton" target="_blank"
+						style="color:hsl(246, 100%, 50%)">https://t.me/thoconlonton</a></p>
+				<p>- Liên hệ facebook: <a href="https://www.facebook.com/profile.php?id=100041831656067" target="_blank"
+						style="color:hsl(246, 100%, 50%)">https://www.facebook.com/profile.php?id=100041831656067</a>
+				</p>
+
+
+				<p><a target="_blank" style="color:hsl(207, 100%, 50%)"
+						href="https://github.com/emga9xkc2/automus12gamethuvn_release/blob/main/README.md"><b>- Chi tiết
+							phiên
+							bản xem tại
+							đây</b></a>
+				<div id="hdsdStatus"></div>
+
+				<div class="w3-border" id="progresss" style="visibility: hidden;">
+					<div id="progress" class="w3-container w3-padding w3-blue" style="width: 0%; visibility: hidden;">
+						<div class="w3-center" id="progressValue" style="visibility: hidden;">0%</div>
+					</div>
+				</div>
+				</p>
+			</div>
+			<!-- Nút đóng popup -->
+			<span class="close">&times;</span>
+		</div>
+	</div>
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content w3-animate-top w3-card-4">
+			<header class="w3-container w3-teal">
+				<span onclick="document.getElementById('id01').style.display='none'"
+					class="w3-button w3-display-topright">&times;</span>
+				<h2 id="kichbannv">Chọn kịch bản</h2>
+			</header>
+			<div id="listkichbannv"></div>
+		</div>
+	</div>
 
 	</div>
 
 	<script>
 
-		disableF5();
+		// $(".tab[data-tab='tab1']").addClass("active");
+		$("#tab1").addClass("active");
+		$(".tab").click(function () {
+			// Lấy data-tab của tab được click
+			var tab_id = $(this).attr("data-tab");
+
+			// Ẩn tất cả các nội dung của tab và xóa lớp active của các tab
+			$(".tab").removeClass("active");
+			$(".tab-content").removeClass("active");
+
+			// Hiển thị nội dung của tab được click và thêm lớp active cho tab
+			$(this).addClass("active");
+			$("#" + tab_id).addClass("active");
+		});
+
+		$('*[name="autosavetxt"]').on('change', function () {
+			var heroselect = $("#namehero").text()
+			if (heroselect != "") {
+				var key = this.id
+				var value = this.value
+				eel.saveCongDiemNew({ hero: heroselect, [key]: value })
+			}
+		})
+		$('*[name="autosavecheckbox"]').on('change', function () {
+			var heroselect = $("#namehero").text()
+			if (heroselect != "") {
+				var key = this.id
+				var value = this.checked ? 1 : 0;
+				eel.saveCongDiemNew({ hero: heroselect, [key]: value })
+			}
+		})
+
+
+		var apikeyactive = "apikeyactive"
+		// disableF5();
 		var mapOptions = "<option>Elbeland3</option><option>Devias2</option><option>Dungeon2</option><option>LostTower3</option><option>LostTower5</option><option>LostTower7</option><option>Tarkan2</option><option>Icarus</option><option>Kanturu_ruin2</option><option>Kanturu_ruin_island</option><option>Kanturu_Remain</option><option>Karutan1</option><option>Karutan2</option><option>Barrack</option><option>Kalima</option>";
 		var defaultMapOptions = "<option disabled selected>Chọn map</option>" + mapOptions
 		setHtmlCssSelector("#mapSelect", defaultMapOptions);
@@ -201,26 +446,7 @@
 			const txtArea = document.getElementById("nhatkyhoatdong");
 			txtArea.value = x + "\r\n" + txtArea.value;
 		}
-		function kichHoatTaiKhoan() {
-			var apikeyActive = getValue("#apikeyActive")
-			eel.kichHoatTaiKhoan(apikeyActive)(function (callback) {
-				var mess = callback.mess
-				if (mess != "success") {
-					setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
-                    <h3>Kích hoạt tài khoản thất bại</h3>
-                    <p>${mess}</p>
-                </div>`  )
-					return
-				}
-				var result = callback.result
-				setHtmlCssSelector("#saveSettingStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
-                    <h3>Kích hoạt tài khoản thành công</h3>
-                    <p>${result}</p>
-                </div>`)
-				// console.log(result)
-			}
-			)
-		}
+
 		function getSetting() {
 			eel.getSetting()(function (callback) {
 				var result = callback.result
@@ -228,11 +454,12 @@
 
 
 				var tokenTelegram = result.tokenTelegram
-				var apikeyActive = result.apikeyActive
-				setValueCssSelector("#apiAnycaptcha", apiAnycaptcha)
+				console.log(result)
+				localStorage.setItem(apikeyactive, result.apikeyActive)
+
 
 				setValueCssSelector("#tokenTelegram", tokenTelegram)
-				setValueCssSelector("#apikeyActive", apikeyActive)
+				setValueCssSelector("#apiAnycaptcha", apiAnycaptcha)
 				// console.log(info)
 			}
 			)
@@ -240,7 +467,8 @@
 		getSetting()
 		function saveSetting() {
 			apiAnycaptcha = getValue('#apiAnycaptcha')
-			apikeyActive = getValue('#apikeyActive')
+
+			apikeyActive = localStorage.getItem(apikeyactive)
 
 			tokenTelegram = getValue('#tokenTelegram')
 			eel.saveSetting(apiAnycaptcha, apikeyActive, tokenTelegram)(function (callback) {
@@ -303,6 +531,49 @@
 				console.log(callback)
 			}
 			)
+		});
+		$("#caidatautopk").bind("click", function () {
+			var heroselect = $("#namehero").text()
+			if (heroselect == "") {
+				toastError("Hãy nhân vật cần cài đặt trên bảng nhân vật")
+				return
+			}
+			showListPK(heroselect)
+		});
+		$("#huongdansudung").bind("click", function () {
+			// Hiển thị popup
+			$(".popup").css("display", "block");
+		});
+
+		// Ẩn popup khi người dùng nhấp nút đóng
+		$(".close").click(function () {
+			$(".popup").css("display", "none");
+		});
+
+		// Ẩn popup khi người dùng nhấp chuột bên ngoài
+		$(window).click(function (event) {
+			if (event.target == $(".popup")[0]) {
+				$(".popup").css("display", "none");
+			}
+		});
+		$("#activeaccount").bind("click", function () {
+			showDialog({
+				title: "Nhập key để kích hoạt phần mềm",
+				value: localStorage.getItem(apikeyactive),
+			}).then(function (value) {
+				if (value === "") {
+					return
+				}
+
+				eel.kichHoatTaiKhoan(value)(function (callback) {
+					console.log(value)
+					// eel.updateSetting(apikeyactive, value)
+					localStorage.setItem(apikeyactive, value)
+					var mess = callback.mess
+					toastWarning(mess)
+					saveSetting()
+				})
+			})
 		});
 		function callback_saveScript(callback) {
 			var mess = callback.mess
@@ -509,154 +780,107 @@
 				var mess = callback.mess
 				if (mess != "success") {
 					setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
-                    <h3>Quét clone thất bại</h3>
-                    <p>${mess}</p>
-                </div>`  )
+                <h3>Quét clone thất bại</h3>
+                <p>${mess}</p>
+            </div>`  )
 					return
 				}
-				var result = callback.result
+				var result = callback.result.split("\n")
+				var lines = value.split("\n");
+				var addedItems = [];
+				for (var i = 0; i < result.length; i++) {
+					var item = result[i].trim();
+					if (!lines.includes(item) && !addedItems.includes(item)) {
+						lines.unshift(item);
+						addedItems.push(item);
+					}
+				}
+				value = lines.join("\n");
 				setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
-                    <h3>Quét clone thành công</h3>                
-                </div>`)
-				txtArea.value = result + "\r\n" + txtArea.value;
-			}
-			)
-		}
-		function showCongDiem(hero) {
-			document.getElementById('id01').style.display = 'block'
-			setHtmlCssSelector("#kichbannv", "Cài đặt - " + hero)
-			eel.getCongDiem(hero)(function (callback) {
-				var result = callback.result
-				var str = result.addstr
-				var agi = result.addagi
-				var vit = result.addvit
-				var ene = result.addene
-				var cmd = result.addcmd
-				var pass2 = result.pass2
-				var sophutrs = result.sophutrs
-				var trainexp = result.trainexp
-				if (trainexp == 0) {
-					trainexp = false
-				}
-				var trainstadium = result.trainstadium
-				if (trainstadium == 0) {
-					trainstadium = false
-				}
-				var annv = result.annv
-				if (annv == 0) {
-					annv = false
-				}
-				var anmain = result.anmain
-				if (anmain == 0) {
-					anmain = false
-				}
-				var resetingame = result.resetingame
-				if (resetingame == 0) {
-					resetingame = false
-				}
-				var listcheck = ""
-				var html = `
-                <div class="w3-row">
-                    <div class="w3-half w3-container">                
-                <label>Sức mạnh</label>
-                <input class="w3-input w3-border" id="str" type="text" value="${str ? str : '0'}" placeholder="0">
-            </div>
-                
-                <div class="w3-half w3-container">
-                <label>Nhanh nhẹn</label>
-                <input class="w3-input w3-border" id="agi" type="text" value="${agi ? agi : '0'}" placeholder="0">
-            </div></div>
-            <div class="w3-row">
-                    <div class="w3-half w3-container">   
-                <label>Thể lực</label>
-                <input class="w3-input w3-border" id="vit" type="text" value="${vit ? vit : '0'}"  placeholder="0">
-            </div>
-            <div class="w3-half w3-container">   
-                <label>Năng lượng</label>
-                <input class="w3-input w3-border" id="ene" type="text" value="${ene ? ene : '0'}"  placeholder="0">
-            </div>
-        </div>
-        <div class="w3-row">
-        <div class="w3-half w3-container">   
-                <label>Lãnh đạo</label>
-                <input class="w3-input w3-border" id="cmd" type="text" value="${cmd ? cmd : '0'}"  placeholder="0">
-                
-            
-        </div></div>
-        <div class="w3-row">
-                <div class="w3-half w3-container">          
-                <label>Mật khẩu web</label>
-                <input class="w3-input w3-border" id="pass2" type="text" value="${pass2 ? pass2 : '0'}"  placeholder="0">
-                </div>              
-                <div class="w3-half w3-container">
-                <label>Số phút reset / lần</label>
-                <input class="w3-input w3-border" id="sophutrs" type="number" value="${sophutrs ? sophutrs : '0'}"  placeholder="0">
-                </div>
-            </div>    
-            <div class="w3-row">
-                <div class="w3-half w3-container">   
-                <input class="w3-check" id="trainexp" type="checkbox">
-                <label>Vào phó bản exp khi bị pk (Dungeon2, LostTower7)</label>
-            </div><div class="w3-half w3-container">   
-                <input class="w3-check" id="trainstadium" type="checkbox">
-                <label>Vào stadium 30p khi bị pk (Dungeon2, LostTower7)</label>
-            </div></div>
-            <div class="w3-row">
-                <div class="w3-half w3-container">   
-               <input class="w3-check" id="annv" type="checkbox">
-                <label>Ẩn nhân vật</label>
-            </div><div class="w3-half w3-container">   
-                <input class="w3-check" id="anmain" type="checkbox">
-                <label>Ẩn main</label>
-            </div>
-            </div><div class="w3-half w3-container">   
-                <input class="w3-check" id="resetingame" type="checkbox">
-                <label>Reset ingame</label>
-            </div>
-        </div>
-               
-            
-    
-            
-            <br>
-            <br><div class="w3-center">
-                <div class="w3-bar">
-                    <button onclick="saveCongDiem('${hero}')" class="w3-button w3-block w3-teal">Lưu lại</button>
-                </div>
-            </div>
-            <div id="saveCongdiemStatus"></div><br><br>`
-				setHtmlCssSelector("#listkichbannv", html)
-				setCheckboxCssSelector("#trainexp", trainexp)
-				setCheckboxCssSelector("#trainstadium", trainstadium)
-				setCheckboxCssSelector("#annv", annv)
-				setCheckboxCssSelector("#anmain", anmain)
-				setCheckboxCssSelector("#resetingame", resetingame)
-				console.log(result);
-			}
-			)
+            <h3>Quét clone thành công</h3>                
+        </div>`)
+				txtArea.value = value;
+			})
 		}
 
-		function callback_getInfo(callback) {
-			console.log(callback)
-			var info = callback.result
-			var keystatus = callback.keystatus
-			setHtmlCssSelector("#hsd", keystatus.status)
-			var render = `<tr><th>Account</th><th>Name</th><th>Map</th><th>Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>`
-
-
-			for (const x in info) {
-				var infoht = info[x]
-				render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" name="cayrs" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cài đặt</button></td></tr>`
+		$("#table").on("click", "tr", function () {
+			var pid = this.id
+			if (pid == "") {
+				return
 			}
-			setHtmlCssSelector('#customers', render)
+			eel.getInfoPid(pid)(function (callback) {
+				var namehero = callback["namehero"]
+				var map = callback["map"]
+				var level = callback["level"]
+				var taikhoandangnhap = callback["taikhoandangnhap"]
+				var classs = callback["class"]
+				setHtmlCssSelector("#namehero", namehero)
+				setHtmlCssSelector("#taikhoandangnhap", taikhoandangnhap)
+				setHtmlCssSelector("#level", level)
+				setHtmlCssSelector("#map", map)
+				setHtmlCssSelector("#class", classs)
 
-			// newtitle = "AUTO MU SS12 " + callback.version
-			// document.title = newtitle
-			// setHtmlCssSelector('#info', newtitle)
-		}
-		setInterval(function () {
-			eel.getInfo()(callback_getInfo);
-		}, 5000);
+				eel.getCongDiem(namehero)(function (callback) {
+					var result = callback.result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0 } = result;
+
+					trainexp = trainexp == 0 ? false : trainexp;
+					trainstadium = trainstadium == 0 ? false : trainstadium;
+					annv = annv == 0 ? false : annv;
+					anmain = anmain == 0 ? false : anmain;
+					resetingame = resetingame == 0 ? false : resetingame;
+					autopk = autopk == 0 ? false : autopk;
+					autotrain = autotrain == 0 ? false : autotrain;
+					autoreset = autoreset == 0 ? false : autoreset;
+
+					$("#addstr").val(addstr);
+					$("#addagi").val(addagi);
+					$("#addvit").val(addvit);
+					$("#addene").val(addene);
+					$("#addcmd").val(addcmd);
+					$("#pass2").val(pass2);
+					$("#sophutrs").val(sophutrs);
+					setCheckboxCssSelector("#trainexp", trainexp);
+					setCheckboxCssSelector("#trainstadium", trainstadium);
+					setCheckboxCssSelector("#annv", annv);
+					setCheckboxCssSelector("#anmain", anmain);
+					setCheckboxCssSelector("#resetingame", resetingame);
+					setCheckboxCssSelector("#autopk", autopk);
+					setCheckboxCssSelector("#autoreset", autoreset);
+					setCheckboxCssSelector("#autotrain", autotrain);
+				})
+			})
+			$("#pid").attr("value", pid)
+
+			$("#table tr").removeClass("bold");
+			$(this).css("color", "red");
+			$(this).addClass("bold");
+
+
+
+		});
+
+		// function callback_getInfo(callback) {
+		// 	console.log(callback)
+		// 	var info = callback.result
+		// 	var keystatus = callback.keystatus
+		// 	setHtmlCssSelector("#hsd", keystatus.status)
+		// 	var render = `<tr><th>Account</th><th>Name</th><th>Map</th><th>Auto Reset</th><th>Auto PK</th><th>Stop</th><th>Level</th><th>Action</th></tr>`
+
+
+		// 	for (const x in info) {
+		// 		var infoht = info[x]
+		// 		render = render + `<tr><td>${infoht.taikhoandangnhap}</td><td>${infoht.namehero}</td><td>${infoht.map}</td><td><input type="checkbox" ${infoht.cayreset ? "checked" : ""} id="cayreset_${infoht.namehero}" name="cayrs" onclick="autoCayReset('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.autopk ? "checked" : ""} id="autopk_${infoht.namehero}" onclick="autoPK('${infoht.namehero}')"></td><td><input type="checkbox" ${infoht.stop ? "checked" : ""} id="stop_${infoht.namehero}" onclick="stopHero('${infoht.namehero}')"></td><td>${infoht.level}</td><td><button onClick="showListPK('${infoht.namehero}')" class="w3-button w3-teal">List PK</button><button onClick="showCongDiem('${infoht.namehero}')" class="w3-button w3-green">Cài đặt</button></td></tr>`
+		// 	}
+		// 	setHtmlCssSelector('#table', render)
+
+		// 	// newtitle = "AUTO MU SS12 " + callback.version
+		// 	// document.title = newtitle
+		// 	// setHtmlCssSelector('#info', newtitle)
+		// }
+		// setInterval(function () {
+		// eel.getInfo()(callback_getInfo);
+		// }, 1000);
 
 
 		// setInterval(function () {

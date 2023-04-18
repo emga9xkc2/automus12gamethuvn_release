@@ -1,3 +1,8 @@
+$(function () {
+  $(this).bind("contextmenu", function (e) {
+    e.preventDefault();
+  });
+});
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /*loop through a collection of all HTML elements:*/
@@ -29,6 +34,44 @@ function includeHTML() {
     }
   }
 }
+function strToBool(myValue) {
+  return String(myValue).toLowerCase() === "true";
+}
+function toastError(x) {
+  toastr.error(x);
+}
+function toastSuccess(x) {
+  toastr.success(x);
+}
+function toastWarning(x) {
+  toastr.warning(x);
+}
+function toastInfo(x) {
+  toastr.info(x);
+}
+function removeCssSelector(cssSelector) {
+  $(cssSelector).remove();
+}
+function pythonToJS(x) {
+  const txtArea = document.getElementById("nhatkyhoatdong");
+  txtArea.value = x + "\r\n" + txtArea.value;
+}
+function setHtmlCssSelector(cssSelector, html) {
+  $(cssSelector).html(html);
+}
+function setValueCssSelector(cssSelector, value) {
+  $(cssSelector).val(html);
+}
+eel.expose(removeCssSelector);
+eel.expose(addRowTable);
+eel.expose(pythonToJS);
+eel.expose(setHtmlCssSelector);
+eel.expose(setValueCssSelector);
+eel.expose(toastError);
+eel.expose(toastSuccess);
+eel.expose(toastWarning);
+eel.expose(toastInfo);
+
 function reloadUrl() {
   location.reload();
 }
@@ -57,9 +100,7 @@ function getCheckboxChecked(cssSelector) {
 function setCheckboxCssSelector(cssSelector, check) {
   $(cssSelector).prop("checked", check);
 }
-function setHtmlCssSelector(cssSelector, html) {
-  $(cssSelector).html(html);
-}
+
 function setValueCssSelector(cssSelector, html) {
   $(cssSelector).val(html);
 }
@@ -257,16 +298,112 @@ function Sleep(ms) {
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
-function disableF5() {
-  const cars = ["F1", "F5", "F11", "F12"];
-  document.addEventListener("keydown", (e) => {
-    console.log(e.key);
-    if (cars.indexOf(e.key) >= 0) {
-      e.preventDefault();
-    }
-  });
-  document.addEventListener("contextmenu", (event) => event.preventDefault());
-}
 includeHTML();
 // CheckLogin();
 editClassActive();
+
+function showDialog(options = {}) {
+  return new Promise(function (resolve, reject) {
+    var overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+
+    var container = document.createElement("div");
+    container.style.backgroundColor = "white";
+    container.style.borderRadius = "5px";
+    container.style.padding = "20px";
+    container.style.textAlign = "center";
+
+    var title = document.createElement("h3");
+    title.innerText = options.title || "Please enter your name";
+
+    var input = document.createElement("input");
+    input.type = "text";
+    input.id = "name-input";
+    input.value = options.value || "";
+    input.style.display = "block";
+    input.style.marginBottom = "10px";
+    input.style.width = "100%";
+    input.style.padding = "5px";
+    input.style.border = "1px solid #ccc";
+    input.style.borderRadius = "3px";
+    input.style.boxSizing = "border-box";
+    input.style.fontSize = "16px";
+
+    var submitButton = document.createElement("button");
+    submitButton.innerText = options.submitText || "OK";
+    submitButton.style.backgroundColor = "#4CAF50";
+    submitButton.style.color = "white";
+    submitButton.style.padding = "10px";
+    submitButton.style.border = "none";
+    submitButton.style.borderRadius = "3px";
+    submitButton.style.fontSize = "16px";
+    submitButton.style.cursor = "pointer";
+    submitButton.style.marginRight = "30px";
+    submitButton.style.width = "100px"; // Đặt độ rộng của nút OK là 100px
+
+    submitButton.addEventListener("click", function () {
+      var name = document.getElementById("name-input").value;
+      resolve(name);
+      overlay.parentNode.removeChild(overlay);
+      // overlay.style.display = "none";
+    });
+
+    var cancelButton = document.createElement("button");
+    cancelButton.innerText = options.cancelText || "Cancel";
+    cancelButton.style.backgroundColor = "#ccc";
+    cancelButton.style.color = "white";
+    cancelButton.style.padding = "10px";
+    cancelButton.style.border = "none";
+    cancelButton.style.borderRadius = "3px";
+    cancelButton.style.fontSize = "16px";
+    cancelButton.style.cursor = "pointer";
+    cancelButton.style.width = "100px"; // Đặt độ rộng của nút OK là 100px
+
+    cancelButton.addEventListener("click", function () {
+      // reject(new Error("Cancelled"));
+      resolve("");
+      overlay.parentNode.removeChild(overlay);
+      // overlay.style.display = "none";
+    });
+
+    container.appendChild(title);
+    container.appendChild(input);
+    container.appendChild(submitButton);
+    container.appendChild(cancelButton);
+
+    overlay.appendChild(container);
+
+    document.body.appendChild(overlay);
+  });
+}
+
+// Sử dụng hàm showDialog
+function addRowTable(selectorTable, listColumnValues, id) {
+  var table = $(selectorTable);
+  if (table.find("#" + id).length > 0) {
+    return;
+  }
+
+  // Tạo hàng mới với các ô
+  var newRow = $("<tr>").attr("id", id);
+  for (var i = 0; i < listColumnValues.length; i++) {
+    var col1 = $("<td>").text(listColumnValues[i]);
+    newRow.append(col1);
+  }
+
+  // Thêm hàng mới vào cuối bảng
+  table.append(newRow);
+}
+
+eel.getTitle()(function (callback) {
+  // console.log(callback);
+  document.title = callback;
+});
