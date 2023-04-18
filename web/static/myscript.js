@@ -436,6 +436,7 @@ function showUpdate(options = {}) {
     submitButton.style.borderRadius = "3px";
     submitButton.style.fontSize = "16px";
     submitButton.style.cursor = "pointer";
+    submitButton.style.marginTop = "30px";
     submitButton.style.marginRight = "30px";
     submitButton.style.width = "100px"; // Đặt độ rộng của nút OK là 100px
 

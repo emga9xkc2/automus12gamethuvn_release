@@ -515,11 +515,11 @@
 			update_progress(0)
 
 
-
 			eel.autoUpdate()(function (callback) {
 				var mess = callback.mess
 				if (mess == "success") {
 					setHtmlCssSelector("#updateStatus", `Đã cập nhật xong. Hãy tắt tool đi mở lại để dùng phiên bản mới`)
+					$("#updateStatus").css("color", "green")
 				} else {
 					setHtmlCssSelector("#updateStatus", `Cập nhật thất bại. Hãy thử lại.`)
 				}
