@@ -384,7 +384,76 @@ function showDialog(options = {}) {
     document.body.appendChild(overlay);
   });
 }
+function showUpdate(options = {}) {
+  return new Promise(function (resolve, reject) {
+    var overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
 
+    var container = document.createElement("div");
+    container.style.backgroundColor = "white";
+    container.style.borderRadius = "5px";
+    container.style.padding = "20px";
+    container.style.textAlign = "center";
+
+    var title = document.createElement("h3");
+    title.id = "updateStatus";
+    title.innerText = options.title || "Please enter your name";
+
+    const progressContainer = document.createElement("div");
+    progressContainer.classList.add("w3-border");
+    progressContainer.id = "progresss";
+    progressContainer.style.visibility = "hidden";
+
+    const progressBarContainer = document.createElement("div");
+    progressBarContainer.id = "progress";
+    progressBarContainer.classList.add("w3-container", "w3-padding", "w3-blue");
+    progressBarContainer.style.width = "0%";
+    progressBarContainer.style.visibility = "hidden";
+
+    const progressValueContainer = document.createElement("div");
+    progressValueContainer.id = "progressValue";
+    progressValueContainer.classList.add("w3-center");
+    progressValueContainer.style.visibility = "hidden";
+    progressValueContainer.textContent = "0%";
+
+    progressBarContainer.appendChild(progressValueContainer);
+    progressContainer.appendChild(progressBarContainer);
+
+    var submitButton = document.createElement("button");
+    submitButton.innerText = options.submitText || "OK";
+    submitButton.style.backgroundColor = "#4CAF50";
+    submitButton.style.color = "white";
+    submitButton.style.padding = "10px";
+    submitButton.style.border = "none";
+    submitButton.style.borderRadius = "3px";
+    submitButton.style.fontSize = "16px";
+    submitButton.style.cursor = "pointer";
+    submitButton.style.marginRight = "30px";
+    submitButton.style.width = "100px"; // Đặt độ rộng của nút OK là 100px
+
+    submitButton.addEventListener("click", function () {
+      overlay.parentNode.removeChild(overlay);
+      // overlay.style.display = "none";
+    });
+
+    container.appendChild(title);
+    container.appendChild(progressContainer);
+
+    container.appendChild(submitButton);
+
+    overlay.appendChild(container);
+
+    document.body.appendChild(overlay);
+  });
+}
 // Sử dụng hàm showDialog
 function addRowTable(selectorTable, listColumnValues, id) {
   var table = $(selectorTable);

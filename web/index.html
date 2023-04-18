@@ -377,11 +377,7 @@
 							đây</b></a>
 				<div id="hdsdStatus"></div>
 
-				<div class="w3-border" id="progresss" style="visibility: hidden;">
-					<div id="progress" class="w3-container w3-padding w3-blue" style="width: 0%; visibility: hidden;">
-						<div class="w3-center" id="progressValue" style="visibility: hidden;">0%</div>
-					</div>
-				</div>
+
 				</p>
 			</div>
 			<!-- Nút đóng popup -->
@@ -513,20 +509,19 @@
 
 		$("#updateversion").bind("click", function () {
 			// alert("1234")
-			setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
-                    <h3>Xin chờ...</h3>
-                </div>`)
+			showUpdate({ title: "Đang cập nhật phiên bản mới. Xin chờ..." })
+
+
 			update_progress(0)
+
+
+
 			eel.autoUpdate()(function (callback) {
 				var mess = callback.mess
 				if (mess == "success") {
-					setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
-                    <h3>Đã cập nhật xong. Hãy tắt tool đi mở lại để dùng phiên bản mới</h3>
-                </div>`)
+					setHtmlCssSelector("#updateStatus", `Đã cập nhật xong. Hãy tắt tool đi mở lại để dùng phiên bản mới`)
 				} else {
-					setHtmlCssSelector("#hdsdStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
-                    <h3>Cập nhật thất bại</h3>
-                </div>`)
+					setHtmlCssSelector("#updateStatus", `Cập nhật thất bại. Hãy thử lại.`)
 				}
 				console.log(callback)
 			}
