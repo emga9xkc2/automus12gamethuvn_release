@@ -4,7 +4,7 @@ gevent==22.10.1
 eel
 tqdm
 requests
-#wmi
+wmi
 pyautoit
 psutil
 # pytesseract
@@ -12,7 +12,7 @@ Pillow
 #timestring
 pynput
 aes-everywhere
-ahk
+ahk==0.14.1
 ahk[binary]
 # python-telegram-bot
 numpy
