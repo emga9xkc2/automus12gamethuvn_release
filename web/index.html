@@ -2,7 +2,7 @@
 <html>
 <!-- <title>AUTO MU SS12</title> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
 <head>
 	<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
@@ -12,7 +12,7 @@
 	<link href="/static/toast/toastr.css" rel="stylesheet" />
 	<script src="/static/toast/toastr.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<link href="/10062023.css" rel="stylesheet" />
 
 
 </head>
@@ -226,12 +226,14 @@
 			</div>
 			<div class="tab-content" id="tab2">
 				<div class="w3-row">
-					<input class="w3-check" name="autosavecheckbox" id="autotrain" type="checkbox">
-					<label>Auto Train</label>
-				</div>
-				<div class="w3-row">
-					<input class="w3-check" name="autosavecheckbox" id="autoreset" type="checkbox">
-					<label>Auto Reset</label>
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="autotrain" type="checkbox">
+						<label>Auto Train</label>
+					</div>
+					<div class="w3-half w3-right">
+						<input class="w3-check" name="autosavecheckbox" id="autoreset" type="checkbox">
+						<label>Auto Reset</label>
+					</div>
 				</div>
 				<div class="w3-row">
 					<input class="w3-check" name="autosavecheckbox" id="autopk" type="checkbox">
@@ -250,14 +252,20 @@
 					<label>Vào stadium 30p khi bị pk (Dungeon2, LostTower7)</label>
 				</div>
 
-
 				<div class="w3-row">
-					<input class="w3-check" name="autosavecheckbox" id="annv" type="checkbox">
-					<label>Ẩn nhân vật</label>
+					<input class="w3-check" name="autosavecheckbox" id="turutzenkhihet" type="checkbox">
+					<label>Tự rút zen khi hết</label>
 				</div>
 				<div class="w3-row">
-					<input class="w3-check" name="autosavecheckbox" id="anmain" type="checkbox">
-					<label>Ẩn main</label>
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="annv" type="checkbox">
+						<label>Ẩn nhân vật</label>
+					</div>
+					<div class="w3-half w3-right">
+						<input class="w3-check" name="autosavecheckbox" id="anmain" type="checkbox">
+						<label>Ẩn main</label>
+					</div>
+
 				</div>
 
 
@@ -817,7 +825,8 @@
 
 				eel.getCongDiem(namehero)(function (callback) {
 					var result = callback.result;
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0 } = result;
+					console.log("getCongDiem", result);
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0 } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
@@ -827,6 +836,7 @@
 					autopk = autopk == 0 ? false : autopk;
 					autotrain = autotrain == 0 ? false : autotrain;
 					autoreset = autoreset == 0 ? false : autoreset;
+					turutzenkhihet = turutzenkhihet == 0 ? false : turutzenkhihet;
 
 					$("#addstr").val(addstr);
 					$("#addagi").val(addagi);
@@ -843,6 +853,7 @@
 					setCheckboxCssSelector("#autopk", autopk);
 					setCheckboxCssSelector("#autoreset", autoreset);
 					setCheckboxCssSelector("#autotrain", autotrain);
+					setCheckboxCssSelector("#turutzenkhihet", turutzenkhihet);
 				})
 			})
 			$("#pid").attr("value", pid)
