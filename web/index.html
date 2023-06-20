@@ -253,8 +253,15 @@
 				</div>
 
 				<div class="w3-row">
-					<input class="w3-check" name="autosavecheckbox" id="turutzenkhihet" type="checkbox">
-					<label>Tự rút zen khi hết</label>
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="turutzenkhihet" type="checkbox">
+						<label>Tự rút zen khi hết</label>
+					</div>
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="autocayrac" type="checkbox">
+						<label>Auto cày rác</label>
+					</div>
+
 				</div>
 				<div class="w3-row">
 					<div class="w3-half">
@@ -826,7 +833,7 @@
 				eel.getCongDiem(namehero)(function (callback) {
 					var result = callback.result;
 					console.log("getCongDiem", result);
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0 } = result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0 } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
@@ -837,6 +844,7 @@
 					autotrain = autotrain == 0 ? false : autotrain;
 					autoreset = autoreset == 0 ? false : autoreset;
 					turutzenkhihet = turutzenkhihet == 0 ? false : turutzenkhihet;
+					autocayrac = autocayrac == 0 ? false : autocayrac;
 
 					$("#addstr").val(addstr);
 					$("#addagi").val(addagi);
@@ -854,6 +862,7 @@
 					setCheckboxCssSelector("#autoreset", autoreset);
 					setCheckboxCssSelector("#autotrain", autotrain);
 					setCheckboxCssSelector("#turutzenkhihet", turutzenkhihet);
+					setCheckboxCssSelector("#autocayrac", autocayrac);
 				})
 			})
 			$("#pid").attr("value", pid)
