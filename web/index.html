@@ -561,14 +561,11 @@
 			}
 			showListPK(heroselect)
 		});
-		// $("#caidatautotrontim").bind("click", function () {
-		// 	var heroselect = $("#namehero").text()
-		// 	if (heroselect == "") {
-		// 		toastError("Hãy nhân vật cần cài đặt trên bảng nhân vật")
-		// 		return
-		// 	}
-		// 	showListPK(heroselect)
-		// });
+		$("#caidatautotrontim").bind("click", function () {
+
+			eel.openFile("autotrontim.txt")
+
+		});
 		$("#huongdansudung").bind("click", function () {
 			// Hiển thị popup
 			$(".popup").css("display", "block");
