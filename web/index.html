@@ -236,11 +236,22 @@
 					</div>
 				</div>
 				<div class="w3-row">
-					<input class="w3-check" name="autosavecheckbox" id="autopk" type="checkbox">
-					<label>Auto PK</label>
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="autopk" type="checkbox">
+						<label>Auto PK</label>
 
-					<button class="settingcss" style="display:inline; background-color:red" id="caidatautopk"
-						title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
+						<button class="settingcss" style="display:inline; background-color:red" id="caidatautopk"
+							title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
+					</div>
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="autotrontim" type="checkbox">
+						<label>Auto trốn tìm</label>
+
+						<button class="settingcss" style="display:inline; background-color:red" id="caidatautotrontim"
+							title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
+					</div>
+
+
 
 				</div>
 				<div class="w3-row">
@@ -550,6 +561,14 @@
 			}
 			showListPK(heroselect)
 		});
+		// $("#caidatautotrontim").bind("click", function () {
+		// 	var heroselect = $("#namehero").text()
+		// 	if (heroselect == "") {
+		// 		toastError("Hãy nhân vật cần cài đặt trên bảng nhân vật")
+		// 		return
+		// 	}
+		// 	showListPK(heroselect)
+		// });
 		$("#huongdansudung").bind("click", function () {
 			// Hiển thị popup
 			$(".popup").css("display", "block");
@@ -833,7 +852,7 @@
 				eel.getCongDiem(namehero)(function (callback) {
 					var result = callback.result;
 					console.log("getCongDiem", result);
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0 } = result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0 } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
@@ -845,6 +864,7 @@
 					autoreset = autoreset == 0 ? false : autoreset;
 					turutzenkhihet = turutzenkhihet == 0 ? false : turutzenkhihet;
 					autocayrac = autocayrac == 0 ? false : autocayrac;
+					autotrontim = autotrontim == 0 ? false : autotrontim;
 
 					$("#addstr").val(addstr);
 					$("#addagi").val(addagi);
@@ -863,6 +883,7 @@
 					setCheckboxCssSelector("#autotrain", autotrain);
 					setCheckboxCssSelector("#turutzenkhihet", turutzenkhihet);
 					setCheckboxCssSelector("#autocayrac", autocayrac);
+					setCheckboxCssSelector("#autotrontim", autotrontim);
 				})
 			})
 			$("#pid").attr("value", pid)
