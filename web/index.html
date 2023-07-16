@@ -285,7 +285,14 @@
 					</div>
 
 				</div>
+				<div class="w3-row">
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="dichuyenkhongbikhung" type="checkbox">
+						<label>Di chuyển không bị khựng</label>
+					</div>
 
+
+				</div>
 
 			</div>
 			<div class="tab-content" id="tab3">
@@ -743,39 +750,7 @@
 			}
 			)
 		}
-		function saveCongDiem(hero) {
-			var str = getValue("#str")
-			console.log(str)
-			var agi = getValue("#agi")
-			var vit = getValue("#vit")
-			var ene = getValue("#ene")
-			var cmd = getValue("#cmd")
-			var pass2 = getValue("#pass2")
-			var sophutrs = getValue("#sophutrs")
-			var trainexp = getCheckboxChecked('#trainexp')
-			var trainstadium = getCheckboxChecked('#trainstadium')
-			var resetingame = getCheckboxChecked('#resetingame')
-			var annv = getCheckboxChecked('#annv')
-			var anmain = getCheckboxChecked('#anmain')
-			eel.saveCongDiem(hero, str, agi, vit, ene, cmd, pass2, sophutrs, trainexp, trainstadium, annv, anmain, resetingame)(function (callback) {
-				console.log(callback)
 
-				var mess = callback.mess
-				if (mess != "success") {
-					setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-red w3-bottombar w3-border-red w3-border">
-                    <h3>Lưu điểm thất bại</h3>
-                    <p>${mess}</p>
-                </div>`  )
-					return
-				}
-				var result = callback.result
-				setHtmlCssSelector("#saveCongdiemStatus", `<div class="w3-panel w3-pale-green w3-bottombar w3-border-green w3-border">
-                    <h3>Lưu điểm thành công</h3>
-                    <p>${result}</p>                    
-                </div>`)
-			}
-			)
-		}
 		function saveListPK(hero) {
 			const txtArea = document.getElementById("listpk");
 			var value = txtArea.value;
@@ -849,13 +824,14 @@
 				eel.getCongDiem(namehero)(function (callback) {
 					var result = callback.result;
 					console.log("getCongDiem", result);
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0 } = result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0 } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
 					annv = annv == 0 ? false : annv;
 					anmain = anmain == 0 ? false : anmain;
 					resetingame = resetingame == 0 ? false : resetingame;
+					dichuyenkhongbikhung = dichuyenkhongbikhung == 0 ? false : dichuyenkhongbikhung;
 					autopk = autopk == 0 ? false : autopk;
 					autotrain = autotrain == 0 ? false : autotrain;
 					autoreset = autoreset == 0 ? false : autoreset;
@@ -881,6 +857,7 @@
 					setCheckboxCssSelector("#turutzenkhihet", turutzenkhihet);
 					setCheckboxCssSelector("#autocayrac", autocayrac);
 					setCheckboxCssSelector("#autotrontim", autotrontim);
+					setCheckboxCssSelector("#dichuyenkhongbikhung", dichuyenkhongbikhung);
 				})
 			})
 			$("#pid").attr("value", pid)
