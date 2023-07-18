@@ -11,7 +11,8 @@ psutil
 Pillow
 #timestring
 pynput
-aes-everywhere
+# aes-everywhere
+pycryptodome
 ahk==0.14.1
 ahk[binary]
 # python-telegram-bot
