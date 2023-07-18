@@ -357,7 +357,7 @@
 
 
 		<div style="float: right;">
-			<p id="version" style="display:inline;">...</p>
+			<!-- <p id="version" style="display:inline;">...</p> -->
 			<button class="settingcss" style="color: rgb(212, 255, 0); display:inline;" id="updateversion"
 				title="Cập nhật phiên bản mới"><i class="fa fa-download"></i></button>
 		</div>
@@ -539,6 +539,40 @@
 			}
 			// $("#progress").val(percent)
 		}
+
+		// eel.getVersion()(function (callback) {
+		// 	setHtmlCssSelector("#version", callback)
+		// });
+
+		function checkVersionInfo() {
+
+			let condition = false; // biến kiểm tra điều kiện
+			var text = "Tải bản mới"
+
+			function checkForUpdates() {
+				eel.getNewVersion()(function (callback) {
+					console.log(callback)
+					var newversion = callback
+					if (newversion.indexOf(".") > 0) {
+						setHtmlCssSelector("#updateversion", text + ": " + newversion)
+
+						condition = true
+					}
+				});
+
+			}
+			checkForUpdates(); // chạy lần đầu tiên
+			let xhrIntervalId = setInterval(function () {
+				if (condition) {
+					console.log("stop")
+					clearInterval(xhrIntervalId); // dừng vòng lặp khi điều kiện đúng
+				} else {
+					console.log("nostop")
+					checkForUpdates();
+				}
+			}, 5000);
+		}
+		checkVersionInfo()
 
 		$("#updateversion").bind("click", function () {
 			// alert("1234")
