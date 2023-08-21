@@ -290,8 +290,10 @@
 						<input class="w3-check" name="autosavecheckbox" id="dichuyenkhongbikhung" type="checkbox">
 						<label>Di chuyển không bị khựng</label>
 					</div>
-
-
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="tumolaigame" type="checkbox">
+						<label>Tự mở lại game</label>
+					</div>
 				</div>
 
 			</div>
@@ -858,7 +860,7 @@
 				eel.getCongDiem(namehero)(function (callback) {
 					var result = callback.result;
 					console.log("getCongDiem", result);
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0 } = result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0, tumolaigame = 0 } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
@@ -866,6 +868,7 @@
 					anmain = anmain == 0 ? false : anmain;
 					resetingame = resetingame == 0 ? false : resetingame;
 					dichuyenkhongbikhung = dichuyenkhongbikhung == 0 ? false : dichuyenkhongbikhung;
+					tumolaigame = tumolaigame == 0 ? false : tumolaigame;
 					autopk = autopk == 0 ? false : autopk;
 					autotrain = autotrain == 0 ? false : autotrain;
 					autoreset = autoreset == 0 ? false : autoreset;
@@ -892,6 +895,7 @@
 					setCheckboxCssSelector("#autocayrac", autocayrac);
 					setCheckboxCssSelector("#autotrontim", autotrontim);
 					setCheckboxCssSelector("#dichuyenkhongbikhung", dichuyenkhongbikhung);
+					setCheckboxCssSelector("#tumolaigame", tumolaigame);
 				})
 			})
 			$("#pid").attr("value", pid)
