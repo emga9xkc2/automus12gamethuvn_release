@@ -221,6 +221,12 @@
 					<label>Level</label>
 					<label id="level"></label>
 				</div>
+				<div class="fixline">
+					<label>Map auto</label>
+					<select name="listmapf2" id="listmapf2">
+
+					</select>
+				</div>
 
 
 			</div>
@@ -858,6 +864,40 @@
 				setHtmlCssSelector("#class", classs)
 
 				eel.getCongDiem(namehero)(function (callback) {
+
+					var map = callback.mapf2;
+					var oldauto = callback.oldauto;
+
+					var selectElement = document.getElementById("listmapf2");
+
+					selectElement.onchange = function (event) {
+						var selectedValue = event.target.value;
+						eel.setMapF2(namehero, selectedValue)
+						// console.log("Đã chọn giá trị: " + selectedValue);
+
+					}
+
+					selectElement.innerHTML = '';
+
+
+					// Lặp qua mảng 'map' và thêm từng mục vào phần tử select
+					map.forEach(function (item) {
+
+
+						// Tạo một phần tử option mới cho mỗi mục trong mảng 'map'
+						var option = document.createElement("option");
+
+						// Thiết lập giá trị và văn bản cho option mới từ mỗi mục trong mảng 'map'
+						option.value = item;
+						option.text = item;
+						if (item == oldauto) {
+							option.selected = true
+						}
+						// Thêm option mới vào phần tử select
+						selectElement.appendChild(option);
+					});
+
+
 					var result = callback.result;
 					console.log("getCongDiem", result);
 					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0, tumolaigame = 0 } = result;
