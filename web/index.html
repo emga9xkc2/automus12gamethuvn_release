@@ -249,13 +249,13 @@
 						<button class="settingcss" style="display:inline; background-color:red" id="caidatautopk"
 							title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
 					</div>
-					<div class="w3-half">
+					<!-- <div class="w3-half">
 						<input class="w3-check" name="autosavecheckbox" id="autotrontim" type="checkbox">
 						<label>Auto trốn tìm</label>
 
 						<button class="settingcss" style="display:inline; background-color:red" id="caidatautotrontim"
 							title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
-					</div>
+					</div> -->
 
 
 
@@ -359,6 +359,12 @@
 			<p id="user" style="display:inline; line-height: 2.5;"></p><button class="settingcss"
 				style="display:inline; background-color:blueviolet" id="huongdansudung" title="Hướng dẫn sử dụng"><i
 					class="fa fa-book"></i></button>
+			<p id="user" style="display:inline; line-height: 2.5;"></p><button class="settingcss"
+				style="display:inline; background-color:rgb(14, 196, 60)" id="mothumucdata" title="Mở thư mục data"><i
+					class="fa fa-folder"></i></button>
+			<p id="user" style="display:inline; line-height: 2.5;"></p><button class="settingcss"
+				style="display:inline; background-color:rgb(196, 14, 14)" id="xoaautologin"
+				title="Cài tên đăng nhập không dùng auto login"><i class="fa fa-sign-in"></i></button>
 		</div>
 
 
@@ -613,6 +619,16 @@
 		$("#caidatautotrontim").bind("click", function () {
 
 			eel.openFile("autotrontim.txt")
+
+		});
+		$("#xoaautologin").bind("click", function () {
+
+			eel.openFile("no_autologin.txt")
+
+		});
+		$("#mothumucdata").bind("click", function () {
+
+			eel.openFolder("/data/")
 
 		});
 		$("#huongdansudung").bind("click", function () {
