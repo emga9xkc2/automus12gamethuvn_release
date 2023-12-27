@@ -249,13 +249,10 @@
 						<button class="settingcss" style="display:inline; background-color:red" id="caidatautopk"
 							title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
 					</div>
-					<!-- <div class="w3-half">
-						<input class="w3-check" name="autosavecheckbox" id="autotrontim" type="checkbox">
-						<label>Auto trốn tìm</label>
-
-						<button class="settingcss" style="display:inline; background-color:red" id="caidatautotrontim"
-							title="Cài đặt auto pk"><i class="fa fa-cog"></i></button>
-					</div> -->
+					<div class="w3-half">
+						<input class="w3-check" name="autosavecheckbox" id="autoxoatoi" type="checkbox">
+						<label>Auto xóa tội</label>
+					</div>
 
 
 
@@ -301,6 +298,7 @@
 						<label>Tự mở lại game</label>
 					</div>
 				</div>
+
 
 			</div>
 			<div class="tab-content" id="tab3">
@@ -916,7 +914,7 @@
 
 					var result = callback.result;
 					console.log("getCongDiem", result);
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0, tumolaigame = 0 } = result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0, tumolaigame = 0, autoxoatoi = 0 } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
@@ -927,6 +925,7 @@
 					tumolaigame = tumolaigame == 0 ? false : tumolaigame;
 					autopk = autopk == 0 ? false : autopk;
 					autotrain = autotrain == 0 ? false : autotrain;
+					autoxoatoi = autoxoatoi == 0 ? false : autoxoatoi;
 					autoreset = autoreset == 0 ? false : autoreset;
 					turutzenkhihet = turutzenkhihet == 0 ? false : turutzenkhihet;
 					autocayrac = autocayrac == 0 ? false : autocayrac;
@@ -947,6 +946,7 @@
 					setCheckboxCssSelector("#autopk", autopk);
 					setCheckboxCssSelector("#autoreset", autoreset);
 					setCheckboxCssSelector("#autotrain", autotrain);
+					setCheckboxCssSelector("#autoxoatoi", autoxoatoi);
 					setCheckboxCssSelector("#turutzenkhihet", turutzenkhihet);
 					setCheckboxCssSelector("#autocayrac", autocayrac);
 					setCheckboxCssSelector("#autotrontim", autotrontim);
