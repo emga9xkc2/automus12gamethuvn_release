@@ -199,6 +199,7 @@
 				<div class="tab active" data-tab="tab1">Thông tin</div>
 				<div class="tab" data-tab="tab2">Tiện ích</div>
 				<div class="tab" data-tab="tab3">Cài đặt reset</div>
+				<div class="tab" data-tab="tab4">Cài đặt khác</div>
 			</div>
 			<div class="tab-content" id="tab1">
 				<div class="fixline">
@@ -341,6 +342,13 @@
 
 				<input class="w3-check" name="autosavecheckbox" id="resetingame" type="checkbox">
 				<label>Reset ingame</label>
+
+			</div>
+			<div class="tab-content" id="tab4">
+				<div class="fixline">
+					<label>Thời gian ra bãi (phút)</label>
+					<input name="autosavetxt" id="thoigianrabai" type="number" min="5" value="" placeholder="5">
+				</div>
 
 			</div>
 
@@ -914,7 +922,7 @@
 
 					var result = callback.result;
 					console.log("getCongDiem", result);
-					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0, tumolaigame = 0, autoxoatoi = 0 } = result;
+					var { addstr: addstr, addagi: addagi, addvit: addvit, addene: addene, addcmd: addcmd, pass2, sophutrs, trainexp = 0, trainstadium = 0, annv = 0, anmain = 0, resetingame = 0, autopk = 0, autotrain = 0, autoreset = 0, turutzenkhihet = 0, autocayrac = 0, autotrontim = 0, dichuyenkhongbikhung = 0, tumolaigame = 0, autoxoatoi = 0, thoigianrabai: thoigianrabai } = result;
 
 					trainexp = trainexp == 0 ? false : trainexp;
 					trainstadium = trainstadium == 0 ? false : trainstadium;
@@ -938,6 +946,7 @@
 					$("#addcmd").val(addcmd);
 					$("#pass2").val(pass2);
 					$("#sophutrs").val(sophutrs);
+					$("#thoigianrabai").val(thoigianrabai);
 					setCheckboxCssSelector("#trainexp", trainexp);
 					setCheckboxCssSelector("#trainstadium", trainstadium);
 					setCheckboxCssSelector("#annv", annv);
